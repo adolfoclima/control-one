@@ -3,12 +3,13 @@
 
 #include <config.h>
 #include <setup.h>
+#include <pages/Pages.h>
 
 void loop()
 {
   static bool ledState; // a variable that keeps the current LED status
-  Button_1.read();      // read the button
-  Button_2.read();      // read the button
+  BtnFuncao1.read();    // read the button
+  BtnFuncao2.read();    // read the button
 
   // if (Button_1.isPressed())
   // {
@@ -19,10 +20,11 @@ void loop()
   //   digitalWrite(PIN_LED_1, false);
   // }
 
-  if (Button_1.wasPressed()) // if the button was released, change the LED state
+  if (BtnFuncao1.wasPressed()) // if the button was released, change the LED state
   {
     ledState = !ledState;
-    digitalWrite(PIN_LED_1, ledState);
+    digitalWrite(PIN_LED_DEBUG, ledState);    
+    Pages::sobre.Print();
   }
 
   // if (Button_1.wasReleased()) // if the button was released, change the LED state
