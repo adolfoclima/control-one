@@ -1,19 +1,47 @@
 #ifndef CONFIG_H_INCLUDED
 #define CONFIG_H_INCLUDED
 
-#include <Arduino.h>
-#include <../lib/JC_Button/JC_Button.h> // https://github.com/JChristensen/JC_Button
-#include <utils/MathLibrary.h>
+/*.....................................................
+Dolphin
+Cn-One - controle avançado de nível
+01 de outubro de 2022
+/.....................................................*/
 
-// Declara todos os pins
-const byte PIN_LED_1(2), // Led debug
-    PIN_LED_2(12),
-    PIN_BTN_1(34), // Burton 1
-    PIN_BTN_2(35); // Button 2
+/*--------------------- Includes ---------------------*/
+#include <Arduino.h> // Arduino no VScode
+#include <Wire.h>    // Arduino no ESP
+
+#include <../lib/JC_Button/JC_Button.h> // https://github.com/JChristensen/JC_Button
+#include <../lib/ui/ScreenLibrary.h>
+
+// Declaração dos pinos do ESP32
+const byte PIN_LED_DEBUG(2);
+
+const byte PIN_BOMBA_CONTATOR(12);
+const byte PIN_BOMBA_CORRENTE(A4);
+
+const byte PIN_PRESSURIZADOR_CONTATOR(4);
+const byte PIN_PRESSURIZADOR_CORRENTE(A5);
+
+const byte PIN_BTN_FUNCAO_1(34);
+const byte PIN_BTN_FUNCAO_2(35);
+const byte PIN_BTN_FUNCAO_3(36);
+const byte PIN_BTN_FUNCAO_4(39);
+
+const byte PIN_SENSOR_NIVEL_SUPERIOR(25);
+const byte PIN_SENSOR_NIVEL_INFERIOR(26);
+const byte PIN_SENSOR_NIVEL_CRITICO(27);
+const byte PIN_FLUXO_BOMBA(14);
+const byte PIN_FLUXO_PRESSURIZADOR(13);
+
+// Declaração e Setup do display
+Tela *Tela::pInstance = nullptr;
+LiquidCrystal_I2C Tela::lcd(0x27, 16, 2);
 
 // Declara os Buttons
-Button Button_1(PIN_BTN_1, 25, false, false); // define the button
-Button Button_2(PIN_BTN_2, 25, false, false); // define the button
+Button BtnFuncao1(PIN_BTN_FUNCAO_1, 25, false, false);
+Button BtnFuncao2(PIN_BTN_FUNCAO_2, 25, false, false);
+Button BtnFuncao3(PIN_BTN_FUNCAO_3, 25, false, false);
+Button BtnFuncao4(PIN_BTN_FUNCAO_4, 25, false, false);
 
-// const int a = Add(10, 10);  // Chama função add da biblioteca
 #endif
