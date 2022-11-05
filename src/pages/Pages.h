@@ -1,14 +1,16 @@
 #pragma once
-#include <pages/Splash.h>
-#include <pages/Home.h>
-#include <pages/Sobre.h>
-#include <pages/Automatico.h>
+#include <pages/components/Splash.h>
+#include <pages/components/Home.h>
+#include <pages/components/Sobre.h>
+#include <pages/components/Automatico.h>
+#include <pages/components/Exemplo.h>
 
 class Pages
 {
 public:
-    static Splash splash;
-    static Home home;
-    static Sobre sobre;
-    static Automatico automatico;
+    static Page_Splash Splash;
+    static Page_Home Home;
+    static Page_Sobre Sobre;
+    static Page_Automatico Automatico;
+    static Page_Exemplo Exemplo;
 };

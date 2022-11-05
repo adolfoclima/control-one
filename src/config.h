@@ -11,8 +11,8 @@ Cn-One - controle avançado de nível
 #include <Arduino.h> // Arduino no VScode
 #include <Wire.h>    // Arduino no ESP
 
-#include <../lib/JC_Button/JC_Button.h> // https://github.com/JChristensen/JC_Button
-#include <../lib/ui/ScreenLibrary.h>
+#include <../lib/Button/Button.h> // https://github.com/JChristensen/JC_Button
+#include <utils/Display.h>
 
 // Declaração dos pinos do ESP32
 const byte PIN_LED_DEBUG(2);
@@ -35,8 +35,8 @@ const byte PIN_FLUXO_BOMBA(14);
 const byte PIN_FLUXO_PRESSURIZADOR(13);
 
 // Declaração e Setup do display
-Tela *Tela::pInstance = nullptr;
-LiquidCrystal_I2C Tela::lcd(0x27, 16, 2);
+Display *Display::pInstance = nullptr;
+LiquidCrystal_I2C Display::lcd(0x27, 16, 2);
 
 // Declara os Buttons
 Button BtnFuncao1(PIN_BTN_FUNCAO_1, 25, false, false);

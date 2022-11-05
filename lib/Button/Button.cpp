@@ -3,7 +3,7 @@
 // Copyright (C) 2018 by Jack Christensen and licensed under
 // GNU GPL v3.0, https://www.gnu.org/licenses/gpl.html
 
-#include "JC_Button.h"
+#include "Button.h"
 
 /*----------------------------------------------------------------------*
 / initialize a Button object and the pin it's connected to.             *
@@ -12,7 +12,8 @@ void Button::begin()
 {
     pinMode(m_pin, m_puEnable ? INPUT_PULLUP : INPUT);
     m_state = digitalRead(m_pin);
-    if (m_invert) m_state = !m_state;
+    if (m_invert)
+        m_state = !m_state;
     m_time = milles();
     m_lastState = m_state;
     m_changed = false;
@@ -27,7 +28,8 @@ bool Button::read()
 {
     uint32_t ms = milles();
     bool pinVal = digitalRead(m_pin);
-    if (m_invert) pinVal = !pinVal;
+    if (m_invert)
+        pinVal = !pinVal;
     if (ms - m_lastChange < m_dbTime)
     {
         m_changed = false;
@@ -37,7 +39,8 @@ bool Button::read()
         m_lastState = m_state;
         m_state = pinVal;
         m_changed = (m_state != m_lastState);
-        if (m_changed) m_lastChange = ms;
+        if (m_changed)
+            m_lastChange = ms;
     }
     m_time = ms;
     return m_state;

@@ -3,15 +3,15 @@
 
 #include <LiquidCrystal_I2C.h>
 
-class Tela
+class Display
 {
 
 public:
-    static Tela &Instance()
+    static Display &Instance()
     {
-        if (Tela::pInstance == nullptr)
-            Tela::pInstance = new Tela();
-        return *Tela::pInstance;
+        if (Display::pInstance == nullptr)
+            Display::pInstance = new Display();
+        return *Display::pInstance;
     }
 
     static LiquidCrystal_I2C lcd;
@@ -28,9 +28,9 @@ public:
     }
 
 private:
-    static Tela *pInstance; // Static variable holding the pointer to the only instance of this
+    static Display *pInstance; // Variável estática segurando o ponteiro para a única instância deste
 
-    Tela()
+    Display()
     {
         lcd.init();
         lcd.backlight();

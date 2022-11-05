@@ -2,46 +2,27 @@
 // Programa legal
 
 #include <config.h>
-#include <setup.h>
+#include <loop.h>
 #include <pages/Pages.h>
 
-void loop()
+void setup()
 {
-  static bool ledState; // a variable that keeps the current LED status
-  BtnFuncao1.read();    // read the button
-  BtnFuncao2.read();    // read the button
+  // Inicializa o Display
+  Display::Instance();
 
-  // if (Button_1.isPressed())
-  // {
-  //   digitalWrite(PIN_LED_1, true);
-  // }
-  // else
-  // {
-  //   digitalWrite(PIN_LED_1, false);
-  // }
+  // Criando Buttons
+  BtnFuncao1.begin(); // initialize the button object
+  BtnFuncao2.begin(); // initialize the button object
 
-  if (BtnFuncao1.wasPressed()) // if the button was released, change the LED state
-  {
-    ledState = !ledState;
-    digitalWrite(PIN_LED_DEBUG, ledState);    
-    Pages::sobre.Print();
-  }
+  // Setup de saída
+  pinMode(PIN_LED_DEBUG, OUTPUT);
+  pinMode(PIN_BOMBA_CONTATOR, OUTPUT);
+  pinMode(PIN_PRESSURIZADOR_CONTATOR, OUTPUT);
 
-  // if (Button_1.wasReleased()) // if the button was released, change the LED state
-  // {
-  //   ledState = !ledState;
-  //   digitalWrite(PIN_LED_1, ledState);
-  // }
+  // Setup de entrada
+  pinMode(PIN_BOMBA_CORRENTE, INPUT); // Entrada analogica
 
-  // if (Button_1.pressedFor(2000))
-  // {
-  //   // button has been pressed for one second
-  //   digitalWrite(PIN_LED_1, true);
-  // }
-
-  // if (Button_2.pressedFor(2000))
-  // {
-  //   // button has been pressed for one second
-  //   digitalWrite(PIN_LED_1, false);
-  // }
+  // Tela de Display
+  Pages::Splash.Print();
+  Pages::Home.Print();
 }
