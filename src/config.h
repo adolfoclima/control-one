@@ -34,6 +34,18 @@ const byte PIN_SENSOR_NIVEL_CRITICO(27);
 const byte PIN_FLUXO_BOMBA(14);
 const byte PIN_FLUXO_PRESSURIZADOR(13);
 
+// Declaracao de variaveis 'bool'
+static bool ledState;
+// Declaração de variáveis 'byte'
+byte tela=0;
+
+// Declaração de variáveis 'Ultra longa'
+long unsigned int vlr;
+
+// Declaração de variáveis 'String'
+String Vlr="";
+String Funcao = "Desl";
+
 // Declaração e Setup do display
 Display *Display::pInstance = nullptr;
 LiquidCrystal_I2C Display::lcd(0x27, 16, 2);

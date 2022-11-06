@@ -4,6 +4,9 @@
 #include <pages/components/Sobre.h>
 #include <pages/components/Automatico.h>
 #include <pages/components/Exemplo.h>
+#include <pages/components/Monitor.h>
+#include <pages/components/Desliga.h>
+#include <pages/components/Jardim.h>
 
 class Pages
 {
@@ -13,4 +16,7 @@ public:
     static Page_Sobre Sobre;
     static Page_Automatico Automatico;
     static Page_Exemplo Exemplo;
+    static Page_Monitor Monitor;
+    static Page_Desliga Desliga;
+    static Page_Jardim Jardim;
 };

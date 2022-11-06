@@ -1,7 +1,7 @@
 #pragma once
 #include <config.h>
 
-class Page_Automatico
+class Page_Jardim
 {
 private:
     static void Exemplo1()
@@ -28,8 +28,8 @@ public:
         vlr = milles() / 1000;
         Vlr = String(vlr);
         Vlr = Vlr + " L/dia";
-        tela = 2;
-        Funcao = "Auto";
+        tela = 3;
+        Funcao = "Jdm";
         Display::lcd.clear();
         Display::lcd.setCursor(0, 0);
         Display::lcd.print(Vlr);

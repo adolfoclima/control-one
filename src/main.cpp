@@ -13,7 +13,8 @@ void setup()
   // Criando Buttons
   BtnFuncao1.begin(); // initialize the button object
   BtnFuncao2.begin(); // initialize the button object
-
+  BtnFuncao3.begin(); // initialize the button object
+  BtnFuncao4.begin(); // initialize the button object
   // Setup de saída
   pinMode(PIN_LED_DEBUG, OUTPUT);
   pinMode(PIN_BOMBA_CONTATOR, OUTPUT);

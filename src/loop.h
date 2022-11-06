@@ -6,26 +6,46 @@
 
 void loop()
 {
-    static bool ledState; // a variable that keeps the current LED status
-    BtnFuncao1.read();    // read the button
-    BtnFuncao2.read();    // read the button
+    // Leitura dos botoes
+    BtnFuncao1.read(); // read the button
+    BtnFuncao2.read(); // read the button
+    BtnFuncao3.read(); // read the button
+    BtnFuncao4.read(); // read the button
 
-    // if (Button_1.isPressed())
-    // {
-    //   digitalWrite(PIN_LED_1, true);
-    // }
-    // else
-    // {
-    //   digitalWrite(PIN_LED_1, false);
-    // }
-
+    // Açao botao F1
     if (BtnFuncao1.wasPressed()) // if the button was released, change the LED state
     {
-        ledState = !ledState;
-        digitalWrite(PIN_LED_DEBUG, ledState);
-        Pages::Sobre.Print();
+        Pages::Monitor.Print();
     }
-
+    // Açao botao F2
+    if (BtnFuncao2.wasPressed()) // if the button was released, change the LED state
+    {
+        if (tela == 0)
+        {
+            Pages::Automatico.Print();
+        }
+    }
+    // Açao botao F3
+    if (BtnFuncao3.wasPressed()) // if the button was released, change the LED state
+    {
+        if (tela == 0)
+        {
+            Pages::Jardim.Print();
+        }
+    }
+    // Açao botao F4
+    if (BtnFuncao4.wasPressed()) // if the button was released, change the LED state
+    {
+        switch (tela)
+        {
+        case 0: // tela Home
+            Pages::Desliga.Print();
+            break;
+        default:
+            Pages::Home.Print();
+            break;
+        }
+    }
     // if (Button_1.wasReleased()) // if the button was released, change the LED state
     // {
     //   ledState = !ledState;

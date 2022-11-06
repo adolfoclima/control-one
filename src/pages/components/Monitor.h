@@ -1,7 +1,7 @@
 #pragma once
 #include <config.h>
 
-class Page_Automatico
+class Page_Monitor
 {
 private:
     static void Exemplo1()
@@ -28,8 +28,8 @@ public:
         vlr = milles() / 1000;
         Vlr = String(vlr);
         Vlr = Vlr + " L/dia";
-        tela = 2;
-        Funcao = "Auto";
+        tela = 1;
+        //Funcao = "Auto";
         Display::lcd.clear();
         Display::lcd.setCursor(0, 0);
         Display::lcd.print(Vlr);
