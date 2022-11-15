@@ -4,38 +4,77 @@
 class Page_Jardim
 {
 private:
-    static void Exemplo1()
+    static void Temporizar10min()
     {
-        // Essa é a opção que já está sendo usada no print()
-        Display::Instance(); // Inicialize o display instanciando antes do primeiro uso. Recomendado adicionar essa linha apenas uma vez no setup.
-        Display::lcd.clear();
-        Display::lcd.print("Exemplo Recomendado!");
-        delay(1000);
+        if (EstadoSeg != EstadoAnt)
+        {
+            EstadoAnt = EstadoSeg;
+            tempoJardim++;
+        }
     }
 
-    static void Exemplo2()
+    static void AtualizaTela()
     {
-        // Crie uma variavel local e use dentro de sua função. (É mais pesado!)
-        LiquidCrystal_I2C lcd = Display::Instance().lcd;
-        lcd.clear();
-        lcd.print("Exemplo 2");
-        delay(1000);
+        // LiquidCrystal_I2C lcd = Display::Instance().lcd;
+        if (tempoJardimAnt != tempoJardim)
+        {
+            tempoJardimAnt = tempoJardim;
+            Display::lcd.setCursor(0, 0);
+            Msg = String((15 - tempoJardim)) + "s para fim   ";
+            Display::lcd.print(Msg);
+        }
+    }
+
+    static void PrintFinal()
+    {
+        Display::lcd.setCursor(0, 0);
+        Msg = "Concluido tempo";
+        //Display::lcd.print(Msg);
+        if ((digitalRead(PIN_BOMBA_CONTATOR)) == LOW)
+        {
+            digitalWrite(PIN_BOMBA_CONTATOR, HIGH);
+        }
+        else
+        {
+            digitalWrite(PIN_BOMBA_CONTATOR, LOW);
+        }
+    }
+
+    static void LigaBombaTemporizada()
+    {
+
+        if (tempoJardimAnt >= 15)
+        {
+            tempoJardimAnt = 0;
+            tempoJardim = 0;
+            Funcao = "Desl";
+            PrintFinal();
+        }
+        else
+        {
+            digitalWrite(PIN_BOMBA_CONTATOR, HIGH);
+        }
     }
 
 public:
     static void Print()
     {
-        vlr = milles() / 1000;
-        Vlr = String(vlr);
-        Vlr = Vlr + " L/dia";
-        tela = 3;
-        Funcao = "Jdm";
-        Display::lcd.clear();
-        Display::lcd.setCursor(0, 0);
-        Display::lcd.print(Vlr);
-        Display::lcd.setCursor(0, 1);
-        Display::lcd.print(Funcao);
-        Display::lcd.setCursor(9, 1);
-        Display::lcd.print("F4:Home");
+        if (tela == 0)
+        {
+            vlr = milles() / 1000;
+            Vlr = String(vlr);
+            Vlr = Vlr + " L/dia";
+            tela = 1;
+            // Atualiza display
+            Display::lcd.clear();
+            Display::lcd.setCursor(0, 1);
+            Display::lcd.print(Funcao);
+            Display::lcd.setCursor(9, 1);
+            Display::lcd.print("F4:Home");
+            TelaAtual = "JDM";
+        }
+        Temporizar10min();
+        LigaBombaTemporizada();
+        AtualizaTela();
     }
 };

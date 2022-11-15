@@ -15,10 +15,16 @@ void setup()
   BtnFuncao2.begin(); // initialize the button object
   BtnFuncao3.begin(); // initialize the button object
   BtnFuncao4.begin(); // initialize the button object
+
+  // Criando Contatores
+  Bomba.begin();
+  Pressurizador.begin();
+
   // Setup de saída
   pinMode(PIN_LED_DEBUG, OUTPUT);
-  pinMode(PIN_BOMBA_CONTATOR, OUTPUT);
-  pinMode(PIN_PRESSURIZADOR_CONTATOR, OUTPUT);
+  // pinMode(PIN_BOMBA_CONTATOR, OUTPUT);
+  // pinMode(PIN_PRESSURIZADOR_CONTATOR, OUTPUT);
+  pinMode(PIN_BUZZER, OUTPUT);
 
   // Setup de entrada
   pinMode(PIN_BOMBA_CORRENTE, INPUT); // Entrada analogica

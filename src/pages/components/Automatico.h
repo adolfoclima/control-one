@@ -4,38 +4,42 @@
 class Page_Automatico
 {
 private:
-    static void Exemplo1()
+    static void AtualizaLitragem()
     {
-        // Essa é a opção que já está sendo usada no print()
-        Display::Instance(); // Inicialize o display instanciando antes do primeiro uso. Recomendado adicionar essa linha apenas uma vez no setup.
-        Display::lcd.clear();
-        Display::lcd.print("Exemplo Recomendado!");
-        delay(1000);
+
+        // digitalWrite(PIN_BOMBA_CONTATOR, HIGH);
+        // delay(200);
+        // digitalWrite(PIN_BOMBA_CONTATOR, LOW);
     }
 
-    static void Exemplo2()
+    static void ControleNivel()
     {
-        // Crie uma variavel local e use dentro de sua função. (É mais pesado!)
-        LiquidCrystal_I2C lcd = Display::Instance().lcd;
-        lcd.clear();
-        lcd.print("Exemplo 2");
-        delay(1000);
+        // Ação Sensores de niveis
     }
 
+    // PIN_SENSOR_NIVEL_SUPERIOR(25)
+    // PIN_SENSOR_NIVEL_INFERIOR(26)
+    // PIN_SENSOR_NIVEL_CRITICO(27)
 public:
     static void Print()
     {
-        vlr = milles() / 1000;
-        Vlr = String(vlr);
-        Vlr = Vlr + " L/dia";
-        tela = 2;
-        Funcao = "Auto";
-        Display::lcd.clear();
-        Display::lcd.setCursor(0, 0);
-        Display::lcd.print(Vlr);
-        Display::lcd.setCursor(0, 1);
-        Display::lcd.print(Funcao);
-        Display::lcd.setCursor(9, 1);
-        Display::lcd.print("F4:Home");
+       /* if (TelaAtual != "DESL")
+        {
+            Vlr = String(BaseDeTempoSeg);
+            Msg = Vlr + " L/dia";
+            if (VlrAnt != Vlr)
+            {
+                VlrAnt = Vlr;
+                Display::lcd.clear();
+                Display::lcd.setCursor(0, 1);
+                Display::lcd.print(Funcao);
+                Display::lcd.setCursor(9, 1);
+                Display::lcd.print("F4:Home");
+                Display::lcd.setCursor(0, 0);
+                Display::lcd.print(Msg);
+                TelaAtual = "AUTO";
+            }
+        }*/
+        // ControleNivel();
     }
 };

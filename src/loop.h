@@ -4,64 +4,119 @@
 #include <config.h>
 #include <pages/Pages.h>
 
-void loop()
+void Alarmes()
+{
+    Pages::Bip.Print();
+}
+
+// Tela de monitoramento
+void Leitura()
+{
+    // Seleção de telas
+    if (TelaAtual == "MON")
+    {
+        Pages::Monitor.Print(); // Chama tela
+    }
+    if (Funcao == "JDM")
+    {
+        Pages::Jardim.Print();
+    }
+    if (Funcao == "HOME")
+    {
+        Pages::Home.Print();
+    }
+}
+
+// Leitura e comandos dos butoes
+void Botoes()
 {
     // Leitura dos botoes
-    BtnFuncao1.read(); // read the button
-    BtnFuncao2.read(); // read the button
-    BtnFuncao3.read(); // read the button
-    BtnFuncao4.read(); // read the button
-
-    // Açao botao F1
+    BtnFuncao1.read();
+    BtnFuncao2.read();
+    BtnFuncao3.read();
+    BtnFuncao4.read();
+    //  Açao botao F1
     if (BtnFuncao1.wasPressed()) // if the button was released, change the LED state
     {
-        Pages::Monitor.Print();
+        if (TelaAtual == "HOME")
+        {
+            ManterLeitura = 1;
+            tela = 0;
+        }
     }
     // Açao botao F2
     if (BtnFuncao2.wasPressed()) // if the button was released, change the LED state
     {
-        if (tela == 0)
+        if (TelaAtual == "HOME")
         {
-            Pages::Automatico.Print();
+            tela = 0;
+            Funcao = "Auto";
+            TelaAtual = "MON";
         }
     }
+
     // Açao botao F3
     if (BtnFuncao3.wasPressed()) // if the button was released, change the LED state
     {
-        if (tela == 0)
+        if (TelaAtual == "HOME")
         {
-            Pages::Jardim.Print();
+            tela = 0;
+            Funcao = "Jdm";
         }
     }
     // Açao botao F4
     if (BtnFuncao4.wasPressed()) // if the button was released, change the LED state
     {
-        switch (tela)
+        if (TelaAtual == "HOME")
         {
-        case 0: // tela Home
-            Pages::Desliga.Print();
-            break;
-        default:
-            Pages::Home.Print();
-            break;
+            ManterLeitura = 0;
+            tela = 0;
+            Funcao = "Desl";
+            TelaAtual = "HOME";
+        }
+        else
+        {
+            tela = 0;
+            TelaAtual = "HOME";
         }
     }
-    // if (Button_1.wasReleased()) // if the button was released, change the LED state
-    // {
-    //   ledState = !ledState;
-    //   digitalWrite(PIN_LED_1, ledState);
-    // }
-
-    // if (Button_1.pressedFor(2000))
-    // {
-    //   // button has been pressed for one second
-    //   digitalWrite(PIN_LED_1, true);
-    // }
-
-    // if (Button_2.pressedFor(2000))
-    // {
-    //   // button has been pressed for one second
-    //   digitalWrite(PIN_LED_1, false);
-    // }
 }
+
+// Comandos (Lógica em varredura)
+void Comandos()
+{
+    // Seleção de função
+    if (Funcao == "Auto")
+    {
+        Pages::Controle.Nivel(); // Chama classe de controle
+        TelaAtual = "MON";       // Chama tela
+        tela = 0;
+    }
+    if (Funcao == "Jdm")
+    {
+        Pages::Jardim.Print();
+    }
+    if (Funcao == "Desl")
+    {
+        Pages::Desliga.Print();
+    }
+}
+void Temporizadores()
+{
+    // Chamada de Temporizadores
+    Pages::Tempos.Print();
+}
+
+
+/////////////////////LOOP///////////////////////////
+void loop()
+{
+    Botoes();         // Leitura de botoes
+    Comandos();       // Execução do comando definido pelo botao
+    Temporizadores(); // Execução de temporizadores
+    Alarmes();
+    Leitura();
+    
+}
+
 #endif
