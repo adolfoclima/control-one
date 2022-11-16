@@ -20,6 +20,11 @@ void setup()
   Bomba.begin();
   Pressurizador.begin();
 
+  // Criando Sensores
+  SensorNivelSuperior.begin();
+  SensorNivelInferior.begin();
+  SensorNivelCritico.begin();
+
   // Setup de saída
   pinMode(PIN_LED_DEBUG, OUTPUT);
   // pinMode(PIN_BOMBA_CONTATOR, OUTPUT);

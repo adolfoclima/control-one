@@ -115,8 +115,7 @@ void loop()
     Comandos();       // Execução do comando definido pelo botao
     Temporizadores(); // Execução de temporizadores
     Alarmes();
-    Leitura();
-    
+    Leitura();    
 }
 
 #endif

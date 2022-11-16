@@ -3,7 +3,12 @@
 void Contator::begin()
 {
     pinMode(m_pin, OUTPUT);
+    if (getStatus())
+    {
+        on();
+    }
 }
+
 bool Contator::getStatus()
 {
     return m_state;

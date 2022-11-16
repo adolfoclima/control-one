@@ -13,6 +13,7 @@ Cn-One - controle avançado de nível
 
 #include <../lib/Button/Button.h> // https://github.com/JChristensen/JC_Button
 #include <../lib/Contator/Contator.h>
+#include <../lib/Sensor/Sensor.h>
 #include <utils/Display.h>
 
 // Declaração dos pinos do ESP32
@@ -72,9 +73,12 @@ Button BtnFuncao3(PIN_BTN_FUNCAO_3, 25, false, false);
 Button BtnFuncao4(PIN_BTN_FUNCAO_4, 25, false, false);
 
 // Declara Contatores
-Contator Bomba(PIN_BOMBA_CONTATOR, false);
-Contator Pressurizador(PIN_PRESSURIZADOR_CONTATOR, false);
+Contator Bomba(PIN_BOMBA_CONTATOR);
+Contator Pressurizador(PIN_PRESSURIZADOR_CONTATOR);
 
 // Declara sensores
+Sensor SensorNivelSuperior(PIN_SENSOR_NIVEL_SUPERIOR);
+Sensor SensorNivelInferior(PIN_SENSOR_NIVEL_INFERIOR);
+Sensor SensorNivelCritico(PIN_SENSOR_NIVEL_CRITICO);
 
 #endif
