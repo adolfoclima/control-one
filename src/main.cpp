@@ -36,5 +36,5 @@ void setup()
 
   // Tela de Display
   Pages::Splash.Print();
-  Pages::Home.Print();
+  // Pages::Home.Print();
 }

@@ -10,7 +10,7 @@ private:
         BaseDeTempoSeg = BaseDeTempoSeg / 1000;
     }
 
-    static void Tempo1seg()
+    static void TempoUmseg()
     {
         if (BaseDeTempoSeg - previous1Seg >= 1)
         {
@@ -33,7 +33,6 @@ public:
     static void Print()
     {
         TempoBase();
-        Tempo1seg();
-        // Exemplo2();
+        TempoUmseg();
     }
 };

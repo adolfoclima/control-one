@@ -28,94 +28,37 @@ void Leitura()
 }
 
 // Leitura e comandos dos butoes
-void Botoes()
-{
-    // Leitura dos botoes
-    BtnFuncao1.read();
-    BtnFuncao2.read();
-    BtnFuncao3.read();
-    BtnFuncao4.read();
-    //  Açao botao F1
-    if (BtnFuncao1.wasPressed()) // if the button was released, change the LED state
-    {
-        if (TelaAtual == "HOME")
-        {
-            ManterLeitura = 1;
-            tela = 0;
-        }
-    }
-    // Açao botao F2
-    if (BtnFuncao2.wasPressed()) // if the button was released, change the LED state
-    {
-        if (TelaAtual == "HOME")
-        {
-            tela = 0;
-            Funcao = "Auto";
-            TelaAtual = "MON";
-        }
-    }
-
-    // Açao botao F3
-    if (BtnFuncao3.wasPressed()) // if the button was released, change the LED state
-    {
-        if (TelaAtual == "HOME")
-        {
-            tela = 0;
-            Funcao = "Jdm";
-        }
-    }
-    // Açao botao F4
-    if (BtnFuncao4.wasPressed()) // if the button was released, change the LED state
-    {
-        if (TelaAtual == "HOME")
-        {
-            ManterLeitura = 0;
-            tela = 0;
-            Funcao = "Desl";
-            TelaAtual = "HOME";
-        }
-        else
-        {
-            tela = 0;
-            TelaAtual = "HOME";
-        }
-    }
-}
 
 // Comandos (Lógica em varredura)
-void Comandos()
-{
-    // Seleção de função
-    if (Funcao == "Auto")
-    {
-        Pages::Controle.Nivel(); // Chama classe de controle
-        TelaAtual = "MON";       // Chama tela
-        tela = 0;
-    }
-    if (Funcao == "Jdm")
-    {
-        Pages::Jardim.Print();
-    }
-    if (Funcao == "Desl")
-    {
-        Pages::Desliga.Print();
-    }
-}
+
 void Temporizadores()
 {
     // Chamada de Temporizadores
     Pages::Tempos.Print();
 }
 
-
 /////////////////////LOOP///////////////////////////
 void loop()
 {
-    Botoes();         // Leitura de botoes
-    Comandos();       // Execução do comando definido pelo botao
+    // Botoes();         // Leitura de botoes
+    //                   // Execução do comando definido pelo botao
     Temporizadores(); // Execução de temporizadores
-    Alarmes();
-    Leitura();    
+    // Alarmes();
+    // Leitura();
+
+    switch (pageMenu)
+    {
+    case Home:
+        Pages::Home.Print();
+        break;
+    case Monitor:
+        Pages::Monitor.Print(); // Chama tela
+        break;
+
+    default:
+        Pages::Home.Print();
+        break;
+    }
 }
 
 #endif

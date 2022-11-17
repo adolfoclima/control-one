@@ -40,15 +40,15 @@ const byte PIN_FLUXO_PRESSURIZADOR(13);
 // Declaracao de variaveis 'bool'
 static bool ledState;
 // Declaração de variáveis 'byte'
-byte tela = 0;
-byte ManterLeitura = 0;
-byte FLAG = 0;
-byte EstadoSeg = LOW;
-byte EstadoAnt = HIGH;
+byte tela;
+byte ManterLeitura;
+byte FLAG;
+byte EstadoSeg;
+byte EstadoAnt;
 // Declaracao de variaveis 'Int'
-int previous1Seg = 0;
-int tempoJardim = 0;
-int tempoJardimAnt = 0;
+int previous1Seg;
+int tempoJardim;
+int tempoJardimAnt;
 int Alarme = 0;
 
 // Declaração de variáveis 'Ultra longa'
@@ -61,6 +61,18 @@ String VlrAnt = "";
 String Funcao = "Desl";
 String TelaAtual = "HOME";
 String Msg = "";
+
+enum PagesMenu
+{
+    Home,
+    Monitor,
+    Automatico,
+    Jardim
+};
+
+bool estadoDoDisplay = true;
+
+PagesMenu pageMenu = Home;
 
 // Declaração e Setup do display
 Display *Display::pInstance = nullptr;
