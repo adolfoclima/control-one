@@ -54,7 +54,12 @@ void loop()
     case Monitor:
         Pages::Monitor.Print(); // Chama tela
         break;
-
+    case Automatico:
+        Pages::Automatico.Print(); // Chama tela
+        break;
+    case Jardim:
+        Pages::Jardim.Print(); // Chama tela
+        break;
     default:
         Pages::Home.Print();
         break;

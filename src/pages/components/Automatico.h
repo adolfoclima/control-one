@@ -4,42 +4,68 @@
 class Page_Automatico
 {
 private:
-    static void AtualizaLitragem()
+    static bool obterEstadoDoDisplay()
     {
-
-        // digitalWrite(PIN_BOMBA_CONTATOR, HIGH);
-        // delay(200);
-        // digitalWrite(PIN_BOMBA_CONTATOR, LOW);
+        if (estadoDoDisplay)
+        {
+            // avisa o useState de mudança
+            estadoDoDisplay = false;
+            return true;
+        }
+        return false;
     }
 
-    static void ControleNivel()
+    static void mudarEstadoDoDisplay()
+    {
+        estadoDoDisplay = true;
+    }
+
+    static void LerTeclado()
+    {
+        // Leitura dos botoes
+        BtnFuncao4.read();
+
+        // Açao botao F4
+        if (BtnFuncao4.wasPressed())
+        {
+            mudarEstadoDoDisplay();
+            pageMenu = Home;
+        }
+    }
+
+    static void ControleDeNivel()
     {
         // Ação Sensores de niveis
+        !SensorNivelSuperior.getStatus()
+            ? Bomba.off()
+        : SensorNivelInferior.getStatus()
+            ? Bomba.on()
+        : void();
     }
 
-    // PIN_SENSOR_NIVEL_SUPERIOR(25)
-    // PIN_SENSOR_NIVEL_INFERIOR(26)
-    // PIN_SENSOR_NIVEL_CRITICO(27)
 public:
     static void Print()
     {
-       /* if (TelaAtual != "DESL")
+        if (obterEstadoDoDisplay())
         {
-            Vlr = String(BaseDeTempoSeg);
+            // Atualiza display
+            Display::lcd.clear();
+            Display::lcd.setCursor(0, 1);
+            Display::lcd.print("Auto");
+            Display::lcd.setCursor(9, 1);
+            Display::lcd.print("4:Home");
+        }
+
+        if (EstadoAnt != EstadoSeg)
+        {
+            Vlr = String(BaseDeTempoSeg); // BaseDeTempoSeg);
             Msg = Vlr + " L/dia";
-            if (VlrAnt != Vlr)
-            {
-                VlrAnt = Vlr;
-                Display::lcd.clear();
-                Display::lcd.setCursor(0, 1);
-                Display::lcd.print(Funcao);
-                Display::lcd.setCursor(9, 1);
-                Display::lcd.print("F4:Home");
-                Display::lcd.setCursor(0, 0);
-                Display::lcd.print(Msg);
-                TelaAtual = "AUTO";
-            }
-        }*/
-        // ControleNivel();
+            Display::lcd.setCursor(0, 0);
+            Display::lcd.print(Msg);
+            EstadoAnt = EstadoSeg;
+        }
+
+        ControleDeNivel();
+        LerTeclado();
     }
 };

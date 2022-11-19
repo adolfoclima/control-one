@@ -35,16 +35,14 @@ private:
 public:
     static void Print()
     {
-
         if (obterEstadoDoDisplay())
         {
-            tela = 1;
             // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(0, 1);
-            Display::lcd.print("Mon");
+            Display::lcd.print("Deslig");
             Display::lcd.setCursor(9, 1);
-            Display::lcd.print("F4:Home");
+            Display::lcd.print("4:Home");
         }
 
         if (EstadoAnt != EstadoSeg)

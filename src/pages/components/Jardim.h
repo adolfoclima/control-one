@@ -4,77 +4,79 @@
 class Page_Jardim
 {
 private:
-    static void Temporizar10min()
+    static void ControleTempo()
     {
-        if (EstadoSeg != EstadoAnt)
+        if (tempoJardim > 0)
         {
-            EstadoAnt = EstadoSeg;
-            tempoJardim++;
-        }
-    }
-
-    static void AtualizaTela()
-    {
-        // LiquidCrystal_I2C lcd = Display::Instance().lcd;
-        if (tempoJardimAnt != tempoJardim)
-        {
-            tempoJardimAnt = tempoJardim;
-            Display::lcd.setCursor(0, 0);
-            Msg = String((15 - tempoJardim)) + "s para fim   ";
-            Display::lcd.print(Msg);
-        }
-    }
-
-    static void PrintFinal()
-    {
-        Display::lcd.setCursor(0, 0);
-        Msg = "Concluido tempo";
-        //Display::lcd.print(Msg);
-        if ((digitalRead(PIN_BOMBA_CONTATOR)) == LOW)
-        {
-            digitalWrite(PIN_BOMBA_CONTATOR, HIGH);
+            Bomba.on();
+            tempoJardim--;
         }
         else
         {
-            digitalWrite(PIN_BOMBA_CONTATOR, LOW);
+            Bomba.off();
         }
     }
 
-    static void LigaBombaTemporizada()
+    static bool obterEstadoDoDisplay()
     {
-
-        if (tempoJardimAnt >= 15)
+        if (estadoDoDisplay)
         {
-            tempoJardimAnt = 0;
-            tempoJardim = 0;
-            Funcao = "Desl";
-            PrintFinal();
+            // avisa o useState de mudança
+            estadoDoDisplay = false;
+            return true;
         }
-        else
+        return false;
+    }
+
+    static void mudarEstadoDoDisplay()
+    {
+        estadoDoDisplay = true;
+    }
+
+    static void LerTeclado()
+    {
+        // Leitura dos botoes
+        BtnFuncao4.read();
+
+        // Açao botao F4
+        if (BtnFuncao4.wasPressed())
         {
-            digitalWrite(PIN_BOMBA_CONTATOR, HIGH);
+            mudarEstadoDoDisplay();
+            pageMenu = Home;
         }
     }
 
 public:
     static void Print()
     {
-        if (tela == 0)
+        if (obterEstadoDoDisplay())
         {
-            vlr = milles() / 1000;
-            Vlr = String(vlr);
-            Vlr = Vlr + " L/dia";
-            tela = 1;
             // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(0, 1);
-            Display::lcd.print(Funcao);
+            Display::lcd.print("Jardim");
             Display::lcd.setCursor(9, 1);
-            Display::lcd.print("F4:Home");
-            TelaAtual = "JDM";
+            Display::lcd.print("4:Home");
+            tempoJardim = 600;
         }
-        Temporizar10min();
-        LigaBombaTemporizada();
-        AtualizaTela();
+
+        if (EstadoAnt != EstadoSeg)
+        {
+            // tempoJardimAnt = tempoJardim;
+            if (tempoJardim)
+            {
+                Msg = String(tempoJardim) + "s para fim...    ";
+            }
+            else
+            {
+                Msg = "tempo concluido ";
+            }
+            Display::lcd.setCursor(0, 0);
+            Display::lcd.print(Msg);
+            ControleTempo();
+            EstadoAnt = EstadoSeg;
+        }
+
+        LerTeclado();
     }
 };

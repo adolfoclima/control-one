@@ -14,25 +14,31 @@ private:
         }
         return false;
     }
+
     static void mudarEstadoDoDisplay()
     {
         estadoDoDisplay = true;
+    }
+
+    static void ParaTudo()
+    {
+        // Desliga contator da bomba
+        Bomba.off();
     }
 
     static void HUD()
     {
         if (obterEstadoDoDisplay())
         {
-            // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(1, 0);
-            Display::lcd.print("F1:Mon");
-            Display::lcd.setCursor(9, 0);
-            Display::lcd.print("F2:Aut");
+            Display::lcd.print("1:Mon");
             Display::lcd.setCursor(1, 1);
-            Display::lcd.print("F3:Jdm");
-            Display::lcd.setCursor(8, 1);
-            Display::lcd.print(">F4:Dsl");
+            Display::lcd.print("2:Aut");
+            Display::lcd.setCursor(9, 0);
+            Display::lcd.print("3:Jdm");
+            Display::lcd.setCursor(9, 1);
+            Display::lcd.print("4:Ajt");
         }
     }
 
@@ -68,6 +74,7 @@ private:
 public:
     static void Print()
     {
+        ParaTudo();
         HUD();
         LerTeclado();
     }
