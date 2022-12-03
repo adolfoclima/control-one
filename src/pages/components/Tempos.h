@@ -20,12 +20,34 @@ private:
             if (EstadoSeg == LOW)
             {
                 EstadoSeg = HIGH;
+                Relogio();
             }
             else
             {
                 EstadoSeg = LOW;
+                Relogio();
             }
             digitalWrite(PIN_LED_DEBUG, EstadoSeg);
+        }
+    }
+
+    static void Relogio()
+    {
+        SegAtual++;
+        if (SegAtual > 59)
+        {
+            SegAtual = 0;
+            MinAtual++;
+            if (MinAtual > 59)
+            {
+                MinAtual = 0;
+                HoraAtual++;
+                if (HoraAtual > 59)
+                {
+                    HoraAtual = 0;
+                    // Ressetar o contador aqui
+                }
+            }
         }
     }
 

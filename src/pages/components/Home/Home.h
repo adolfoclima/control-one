@@ -38,7 +38,7 @@ private:
             Display::lcd.setCursor(9, 0);
             Display::lcd.print("3:Jdm");
             Display::lcd.setCursor(9, 1);
-            Display::lcd.print("4:Ajt");
+            Display::lcd.print("4:Ajst");
         }
     }
 
@@ -48,6 +48,7 @@ private:
         BtnFuncao1.read();
         BtnFuncao2.read();
         BtnFuncao3.read();
+        BtnFuncao4.read();
 
         //  Açao botao F1
         if (BtnFuncao1.wasPressed())
@@ -68,6 +69,13 @@ private:
         {
             mudarEstadoDoDisplay();
             pageMenu = Jardim;
+        }
+
+        // Açao botao F4
+        if (BtnFuncao4.wasPressed())
+        {
+            mudarEstadoDoDisplay();
+            pageMenu = Ajustes;
         }
     }
 

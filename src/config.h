@@ -49,7 +49,12 @@ byte EstadoAnt;
 int previous1Seg;
 int tempoJardim;
 int tempoJardimAnt;
+int segundosJardim = 10;
 int Alarme = 0;
+int TipoAjuste = 0;
+int HoraAtual = 12;
+int MinAtual = 30;
+int SegAtual = 0;
 
 // Declaração de variáveis 'Ultra longa'
 long unsigned int vlr;
@@ -61,14 +66,30 @@ String VlrAnt = "";
 String Funcao = "Desl";
 String TelaAtual = "HOME";
 String Msg = "";
+String SHoraAtual = "12";
+String SMinAtual = "30";
 
 enum PagesMenu
 {
     Home,
     Monitor,
     Automatico,
-    Jardim
+    Jardim,
+    Ajustes,
+    AjustesTempoJardim,
+    AjustesSensorFluxo,
+    AjustesHora,
+    AjustesMinuto
 };
+
+enum Ajustes
+{
+    TempoJardim,
+    SensorFluxo,
+    Hora,
+    Minuto
+};
+
 
 bool estadoDoDisplay = true;
 

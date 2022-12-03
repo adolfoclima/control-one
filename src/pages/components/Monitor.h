@@ -51,6 +51,16 @@ public:
             Msg = Vlr + " L/dia";
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
+            if (MinAtual < 10)
+            {
+                Msg = String(HoraAtual) + ":0" + String(MinAtual);
+            }
+            else
+            {
+                Msg = String(HoraAtual) + ":" + String(MinAtual);
+            }
+            Display::lcd.setCursor(11, 0);
+            Display::lcd.print(Msg);
             EstadoAnt = EstadoSeg;
         }
 

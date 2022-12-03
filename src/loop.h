@@ -12,8 +12,8 @@ void Alarmes()
 // Tela de monitoramento
 void Leitura()
 {
-    // Seleção de telas
-    if (TelaAtual == "MON")
+     // Seleção de telas
+    /*if (TelaAtual == "MON")
     {
         Pages::Monitor.Print(); // Chama tela
     }
@@ -24,7 +24,7 @@ void Leitura()
     if (Funcao == "HOME")
     {
         Pages::Home.Print();
-    }
+    }*/
 }
 
 // Leitura e comandos dos butoes
@@ -59,6 +59,12 @@ void loop()
         break;
     case Jardim:
         Pages::Jardim.Print(); // Chama tela
+        break;
+    case Ajustes:
+        Pages::Ajustes.Print(); // Chama tela
+        break;
+    case AjustesHora:
+        Pages::AjustesHora.Print(); // Chama tela
         break;
     default:
         Pages::Home.Print();

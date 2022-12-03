@@ -9,6 +9,8 @@
 #include <pages/components/Tempos.h>
 #include <pages/components/Jardim.h>
 #include <pages/components/Bip.h>
+#include <pages/components/Ajustes.h>
+#include <pages/components/AjustesHora.h>
 
 class Pages
 {
@@ -22,4 +24,6 @@ public:
     static Page_Jardim Jardim;
     static Page_Tempos Tempos;
     static Page_Bip Bip;
+    static Page_Ajustes Ajustes;
+    static Page_AjustesHora AjustesHora;
 };
