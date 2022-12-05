@@ -49,6 +49,33 @@ private:
                 }
             }
         }
+
+        if (HoraAtual < 10)
+        {
+            SHoraAtual = " " + String(HoraAtual);
+        }
+        else
+        {
+            SHoraAtual = String(HoraAtual);
+        }
+
+        if (MinAtual < 10)
+        {
+            SMinAtual = "0" + String(MinAtual);
+        }
+        else
+        {
+            SMinAtual = String(MinAtual);
+        }
+
+        if (EstadoSeg)
+        {
+            SHoraAtual = SHoraAtual + ":" + SMinAtual;
+        }
+        else
+        {
+            SHoraAtual = SHoraAtual + " " + SMinAtual;
+        }
     }
 
 public:

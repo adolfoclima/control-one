@@ -1,7 +1,7 @@
 #pragma once
 #include <config.h>
 
-class Page_Monitor
+class Page_Alarmes
 {
 private:
     static bool obterEstadoDoDisplay()
@@ -27,6 +27,7 @@ private:
         // Açao botao F4
         if (BtnFuncao4.wasPressed())
         {
+            Alarme=0;
             mudarEstadoDoDisplay();
             pageMenu = Home;
         }
@@ -40,20 +41,31 @@ public:
             // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(0, 1);
-            Display::lcd.print("Deslig");
+            Display::lcd.print("ALARME");
             Display::lcd.setCursor(9, 1);
-            Display::lcd.print("4:Home");
-        }
-
-        if (EstadoAnt != EstadoSeg)
-        {
-            Vlr = String(BaseDeTempoSeg); // BaseDeTempoSeg);
-            Msg = Vlr + " L/dia";
+            Display::lcd.print("4:Rst");
+            switch (Alarme)
+            {
+            case 0:
+                Msg = "Sem erro";
+                break;
+            case 1:
+                Msg = "Tempo limite";
+                break;
+            case 2:
+                Msg = "Erro 2";
+                break;
+            case 3:
+                Msg = "Erro 3";
+                break;
+            case 4:
+                Msg = "Erro 4";
+                break;
+            default:
+                break;
+            }
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
-            Display::lcd.setCursor(11, 0);
-            Display::lcd.print(SHoraAtual);
-            EstadoAnt = EstadoSeg;
         }
 
         LerTeclado();

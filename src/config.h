@@ -55,6 +55,8 @@ int TipoAjuste = 0;
 int HoraAtual = 12;
 int MinAtual = 30;
 int SegAtual = 0;
+int TempoBomba = 0;
+int PreviatempoBomba = 0;
 
 // Declaração de variáveis 'Ultra longa'
 long unsigned int vlr;
@@ -68,6 +70,7 @@ String TelaAtual = "HOME";
 String Msg = "";
 String SHoraAtual = "12";
 String SMinAtual = "30";
+String STempoBomba;
 
 enum PagesMenu
 {
@@ -76,10 +79,11 @@ enum PagesMenu
     Automatico,
     Jardim,
     Ajustes,
-    AjustesTempoJardim,
-    AjustesSensorFluxo,
+    AjustesFluxo,
     AjustesHora,
-    AjustesMinuto
+    AjustesMinuto,
+    AjustesJardim,
+    Alarmes
 };
 
 enum Ajustes

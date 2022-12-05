@@ -11,6 +11,8 @@
 #include <pages/components/Bip.h>
 #include <pages/components/Ajustes.h>
 #include <pages/components/AjustesHora.h>
+#include <pages/components/AjustesJardim.h>
+#include <pages/components/Alarmes.h>
 
 class Pages
 {
@@ -26,4 +28,6 @@ public:
     static Page_Bip Bip;
     static Page_Ajustes Ajustes;
     static Page_AjustesHora AjustesHora;
+    static Page_AjustesJardim AjustesJardim;
+    static Page_Alarmes Alarmes;
 };

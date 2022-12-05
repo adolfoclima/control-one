@@ -4,32 +4,6 @@
 #include <config.h>
 #include <pages/Pages.h>
 
-void Alarmes()
-{
-    Pages::Bip.Print();
-}
-
-// Tela de monitoramento
-void Leitura()
-{
-     // Seleção de telas
-    /*if (TelaAtual == "MON")
-    {
-        Pages::Monitor.Print(); // Chama tela
-    }
-    if (Funcao == "JDM")
-    {
-        Pages::Jardim.Print();
-    }
-    if (Funcao == "HOME")
-    {
-        Pages::Home.Print();
-    }*/
-}
-
-// Leitura e comandos dos butoes
-
-// Comandos (Lógica em varredura)
 
 void Temporizadores()
 {
@@ -66,6 +40,12 @@ void loop()
     case AjustesHora:
         Pages::AjustesHora.Print(); // Chama tela
         break;
+    case AjustesJardim:
+        Pages::AjustesJardim.Print(); // Chama tela
+        break;
+    case Alarmes:
+        Pages::Alarmes.Print(); // Chama tela
+        break;        //AjustesJardim
     default:
         Pages::Home.Print();
         break;

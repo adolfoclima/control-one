@@ -8,7 +8,6 @@ private:
     {
         if (estadoDoDisplay)
         {
-            // avisa o useState de mudança
             estadoDoDisplay = false;
             return true;
         }
@@ -67,9 +66,14 @@ private:
     }
     static void Acao4()
     {
-        !TipoAjuste == 2
-            ? TipoAjuste = 3
-            : TipoAjuste = 2;
+        if (TipoAjuste == 2)
+        {
+            TipoAjuste = 3;
+        }
+        else
+        {
+            TipoAjuste = 2;
+        }
         mudarEstadoDoDisplay();
     }
 
@@ -110,7 +114,7 @@ public:
             // Formatação dos horários
             if (HoraAtual < 10)
             {
-                SHoraAtual = "0" + String(HoraAtual);
+                SHoraAtual = " " + String(HoraAtual);
             }
             else
             {
@@ -125,16 +129,18 @@ public:
             {
                 SMinAtual = String(MinAtual);
             }
+            SHoraAtual = SHoraAtual + ":" + SMinAtual;
+
             // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(0, 0);
             if (TipoAjuste == 2)
             {
-                Msg = "Ajst Hora  " + SHoraAtual + ":" + SMinAtual;
+                Msg = "Ajst Hora  " + SHoraAtual;
             }
             else
             {
-                Msg = "Ajst Min   " + SHoraAtual + ":" + SMinAtual;
+                Msg = "Ajst Min   " + SHoraAtual;
             }
             Display::lcd.print(Msg);
             Display::lcd.setCursor(0, 1);

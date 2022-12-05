@@ -35,12 +35,14 @@ private:
 
     static void ControleDeNivel()
     {
-        // Ação Sensores de niveis
-        !SensorNivelSuperior.getStatus()
-            ? Bomba.off()
-        : SensorNivelInferior.getStatus()
-            ? Bomba.on()
-        : void();
+        if (Alarme == 0)
+        {
+            !SensorNivelSuperior.getStatus()
+                ? Bomba.off()
+            : SensorNivelInferior.getStatus()
+                ? Bomba.on()
+                : void();
+        }
     }
 
 public:
@@ -50,9 +52,12 @@ public:
         {
             // Atualiza display
             Display::lcd.clear();
+            //
+
+            //
             Display::lcd.setCursor(0, 1);
             Display::lcd.print("Auto");
-            Display::lcd.setCursor(9, 1);
+            Display::lcd.setCursor(10, 1);
             Display::lcd.print("4:Home");
         }
 
@@ -62,6 +67,60 @@ public:
             Msg = Vlr + " L/dia";
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
+            // Formatação dos horários
+            if (Bomba.getStatus())
+            {
+                TempoBomba++;
+                if (TempoBomba > 360) // A L A R M E S 
+                {
+                    Bomba.off();
+                    Alarme = 1;
+                    mudarEstadoDoDisplay();
+                    pageMenu = Alarmes;
+                }
+                else if (TempoBomba > 299)
+                {
+                    PreviatempoBomba = TempoBomba / 60;
+                    if (PreviatempoBomba < 10)
+                    {
+                        STempoBomba = " " + String(PreviatempoBomba) + "m  ";
+                    }
+                    else if (PreviatempoBomba < 100)
+                    {
+                        STempoBomba = " " + String(PreviatempoBomba) + "m ";
+                    }
+                    else
+                    {
+                        STempoBomba = " " + String(PreviatempoBomba) + "m";
+                    }
+                }
+                else
+                {
+                    if (PreviatempoBomba < 10)
+                    {
+                        STempoBomba = " " + String(TempoBomba) + "s  ";
+                    }
+                    else if (PreviatempoBomba < 100)
+                    {
+                        STempoBomba = " " + String(TempoBomba) + "s ";
+                    }
+                    else
+                    {
+                        STempoBomba = " " + String(TempoBomba) + "s";
+                    }
+                }
+            }
+            else
+            {
+                STempoBomba = "     ";
+                TempoBomba = 0;
+            }
+            Display::lcd.setCursor(4, 1);
+            Display::lcd.print(STempoBomba);
+
+            // Msg = SHoraAtual; //+ ":" + SMinAtual
+            Display::lcd.setCursor(11, 0);
+            Display::lcd.print(SHoraAtual);
             EstadoAnt = EstadoSeg;
         }
 
