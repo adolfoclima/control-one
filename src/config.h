@@ -10,11 +10,16 @@ Cn-One - controle avançado de nível
 /*--------------------- Includes ---------------------*/
 #include <Arduino.h> // Arduino no VScode
 #include <Wire.h>    // Arduino no ESP
+#include <WiFi.h>      // Conexão WiFi
+#include <time.h>   // Biblioteca de tempo
+
 
 #include <../lib/Button/Button.h> // https://github.com/JChristensen/JC_Button
 #include <../lib/Contator/Contator.h>
 #include <../lib/Sensor/Sensor.h>
 #include <utils/Display.h>
+//#include <I_RTC.h>
+//#include <LittlesFS.h>
 
 // Declaração dos pinos do ESP32
 const byte PIN_LED_DEBUG(2);
@@ -45,6 +50,8 @@ byte ManterLeitura;
 byte FLAG;
 byte EstadoSeg;
 byte EstadoAnt;
+byte HabilitaNivelCritico = 0;
+byte StatusBombaAnterior;
 // Declaracao de variaveis 'Int'
 int previous1Seg;
 int tempoJardim;
@@ -57,6 +64,7 @@ int MinAtual = 30;
 int SegAtual = 0;
 int TempoBomba = 0;
 int PreviatempoBomba = 0;
+int TempoBackLigth = 1;
 
 // Declaração de variáveis 'Ultra longa'
 long unsigned int vlr;

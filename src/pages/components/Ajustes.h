@@ -71,6 +71,7 @@ private:
     static void LerTeclado()
     {
         // Leitura dos botoes
+        TempoBackLigth = 1; // Manter tela ligada
         BtnFuncao1.read();
         BtnFuncao2.read();
         BtnFuncao3.read();
@@ -136,5 +137,6 @@ public:
             //EstadoAnt = EstadoSeg;
         }*/
         LerTeclado();
+        TempoBackLigth=0;   // Display não apaga nesta tela
     }
 };

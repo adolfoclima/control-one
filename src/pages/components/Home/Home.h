@@ -39,6 +39,7 @@ private:
             Display::lcd.print("3:Jdm");
             Display::lcd.setCursor(9, 1);
             Display::lcd.print("4:Ajst");
+            TempoBackLigth = 1;
         }
     }
 
@@ -53,29 +54,66 @@ private:
         //  Açao botao F1
         if (BtnFuncao1.wasPressed())
         {
-            mudarEstadoDoDisplay();
-            pageMenu = Monitor;
+            if (TempoBackLigth)
+            {
+                mudarEstadoDoDisplay();
+                pageMenu = Monitor;
+            }
+            else
+            {
+                TempoBackLigth = 1;
+            }
         }
 
         // Açao botao F2
         if (BtnFuncao2.wasPressed())
         {
-            mudarEstadoDoDisplay();
-            pageMenu = Automatico;
+            if (TempoBackLigth)
+            {
+                mudarEstadoDoDisplay();
+                pageMenu = Automatico;
+            }
+            else
+            {
+                TempoBackLigth = 1;
+            }
         }
 
         // Açao botao F3
         if (BtnFuncao3.wasPressed())
         {
-            mudarEstadoDoDisplay();
-            pageMenu = Jardim;
+            if (TempoBackLigth)
+            {
+                mudarEstadoDoDisplay();
+                pageMenu = Jardim;
+            }
+            else
+            {
+                TempoBackLigth = 1;
+            }
         }
 
         // Açao botao F4
         if (BtnFuncao4.wasPressed())
         {
+            if (TempoBackLigth)
+            {
+                mudarEstadoDoDisplay();
+                pageMenu = Ajustes;
+            }
+            else
+            {
+                TempoBackLigth = 1;
+            }
+        }
+    }
+
+    static void SaiDoHome()
+    {
+        if (TempoBackLigth > 15)
+        {
             mudarEstadoDoDisplay();
-            pageMenu = Ajustes;
+            pageMenu=Monitor;
         }
     }
 
@@ -85,5 +123,6 @@ public:
         ParaTudo();
         HUD();
         LerTeclado();
+        SaiDoHome();
     }
 };

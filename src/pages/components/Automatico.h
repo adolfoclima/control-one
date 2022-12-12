@@ -20,28 +20,77 @@ private:
         estadoDoDisplay = true;
     }
 
+    //............................... Le teclado
     static void LerTeclado()
     {
         // Leitura dos botoes
+        BtnFuncao1.read();
+        BtnFuncao2.read();
+        BtnFuncao3.read();
         BtnFuncao4.read();
 
-        // Açao botao F4
-        if (BtnFuncao4.wasPressed())
+        if (BtnFuncao1.wasPressed())
         {
-            mudarEstadoDoDisplay();
-            pageMenu = Home;
+            TempoBackLigth = 1;
+        }
+        if (BtnFuncao2.wasPressed())
+        {
+            TempoBackLigth = 1;
+        }
+        if (BtnFuncao3.wasPressed())
+        {
+            TempoBackLigth = 1;
+        }
+        // Açao botao F4
+        if (BtnFuncao4.wasPressed()) // Botão acionado?
+        {
+            if (TempoBackLigth)
+            {
+                TempoBomba = 0;
+                mudarEstadoDoDisplay(); // Habilita atualizacao do display
+                pageMenu = Home;        // Chama página Home
+            }
+            else
+            {
+                TempoBackLigth = 1;
+            }
         }
     }
-
+    //............................... Controle de nível
     static void ControleDeNivel()
     {
         if (Alarme == 0)
         {
-            !SensorNivelSuperior.getStatus()
-                ? Bomba.off()
-            : SensorNivelInferior.getStatus()
-                ? Bomba.on()
-                : void();
+            !SensorNivelSuperior.getStatus()      // Nivel superior NAO está acionado?
+                ? Bomba.off()                     // Desliga bomba
+                : SensorNivelInferior.getStatus() // Nivel inferior acionado?
+                      ? Bomba.on()                // Liga bomba
+                      : void();                   // faz nada
+        }
+
+        if (!SensorNivelInferior.getStatus()) // Nível inferior acionado habilitado o nível crítico
+        {
+            HabilitaNivelCritico = 1; // Nível crítico esta habilitado
+        }
+
+        if (HabilitaNivelCritico) // Nível crítico esta habilitado?
+        {
+            if (SensorNivelCritico.getStatus()) // Nível critico esta acionado?
+            {
+                Bomba.off();            // Desliga bomba
+                Alarme = 2;             // Informa o id do alarme
+                mudarEstadoDoDisplay(); // Habilita atualizacao do display
+                pageMenu = Alarmes;     // Chama a página de alarmes
+            }
+        }
+    }
+
+    static void LigarDisplayTemporariamente()
+    {
+        if (Bomba.getStatus() == !StatusBombaAnterior)
+        {
+            TempoBackLigth = 1;
+            StatusBombaAnterior = Bomba.getStatus();
         }
     }
 
@@ -50,11 +99,9 @@ public:
     {
         if (obterEstadoDoDisplay())
         {
+            TempoBackLigth = 1;
             // Atualiza display
             Display::lcd.clear();
-            //
-
-            //
             Display::lcd.setCursor(0, 1);
             Display::lcd.print("Auto");
             Display::lcd.setCursor(10, 1);
@@ -71,10 +118,11 @@ public:
             if (Bomba.getStatus())
             {
                 TempoBomba++;
-                if (TempoBomba > 360) // A L A R M E S 
+                if (TempoBomba > 360) // A L A R M E S
                 {
                     Bomba.off();
                     Alarme = 1;
+                    TempoBomba = 0;
                     mudarEstadoDoDisplay();
                     pageMenu = Alarmes;
                 }
@@ -124,6 +172,7 @@ public:
             EstadoAnt = EstadoSeg;
         }
 
+        LigarDisplayTemporariamente();
         ControleDeNivel();
         LerTeclado();
     }

@@ -36,13 +36,35 @@ private:
     static void LerTeclado()
     {
         // Leitura dos botoes
+        BtnFuncao1.read();
+        BtnFuncao2.read();
+        BtnFuncao3.read();
         BtnFuncao4.read();
 
-        // Açao botao F4
-        if (BtnFuncao4.wasPressed())
+        if (BtnFuncao1.wasPressed())
         {
-            mudarEstadoDoDisplay();
-            pageMenu = Home;
+            TempoBackLigth = 1;
+        }
+        if (BtnFuncao2.wasPressed())
+        {
+            TempoBackLigth = 1;
+        }
+        if (BtnFuncao3.wasPressed())
+        {
+            TempoBackLigth = 1;
+        }
+        // Açao botao F4
+        if (BtnFuncao4.wasPressed()) // Botão acionado?
+        {
+            if (TempoBackLigth)
+            {
+                mudarEstadoDoDisplay(); // Habilita atualizacao do display
+                pageMenu = Home;        // Chama página Home
+            }
+            else
+            {
+                TempoBackLigth = 1;
+            }
         }
     }
 
@@ -70,6 +92,7 @@ public:
             else
             {
                 Msg = "tempo concluido ";
+                TempoBackLigth=401;
             }
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);

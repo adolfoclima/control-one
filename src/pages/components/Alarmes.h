@@ -27,7 +27,8 @@ private:
         // Açao botao F4
         if (BtnFuncao4.wasPressed())
         {
-            Alarme=0;
+            TempoBackLigth = 1;
+            Alarme = 0;
             mudarEstadoDoDisplay();
             pageMenu = Home;
         }
@@ -38,6 +39,7 @@ public:
     {
         if (obterEstadoDoDisplay())
         {
+            TempoBackLigth = 401;   // 0= Display apagado, 1= Display aceso, 401= Display piscando (ALERTA)
             // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(0, 1);
@@ -53,7 +55,8 @@ public:
                 Msg = "Tempo limite";
                 break;
             case 2:
-                Msg = "Erro 2";
+                HabilitaNivelCritico = 0;
+                Msg = "Nivel critico";
                 break;
             case 3:
                 Msg = "Erro 3";

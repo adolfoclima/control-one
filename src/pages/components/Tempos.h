@@ -1,4 +1,5 @@
 #pragma once
+#include <LiquidCrystal_I2C.h>
 #include <config.h>
 
 class Page_Tempos
@@ -33,6 +34,10 @@ private:
 
     static void Relogio()
     {
+        if (TempoBackLigth)
+        {
+            TempoBackLigth++; // Incrementa tempo do LCD aceso
+        }
         SegAtual++;
         if (SegAtual > 59)
         {
@@ -78,9 +83,38 @@ private:
         }
     }
 
+    static void ApagarDisplay()
+    {
+        if (TempoBackLigth > 400)
+        {
+            TempoBackLigth = 401;
+            if (EstadoSeg)
+            {
+                Display::lcd.noBacklight();
+            }
+            else
+            {
+                Display::lcd.backlight();
+            }
+        }
+        else if (TempoBackLigth > 30)
+        {
+            TempoBackLigth = 0;
+            Display::lcd.noBacklight();
+        }
+        else if (TempoBackLigth > 1)
+        {
+            Display::lcd.backlight();
+        }
+        else
+        {
+        }
+    }
+
 public:
     static void Print()
     {
+        ApagarDisplay();
         TempoBase();
         TempoUmseg();
     }
