@@ -13,6 +13,7 @@
 #include <pages/components/AjustesHora.h>
 #include <pages/components/AjustesJardim.h>
 #include <pages/components/Alarmes.h>
+#include <pages/components/Vazoes.h>
 
 class Pages
 {
@@ -30,4 +31,5 @@ public:
     static Page_AjustesHora AjustesHora;
     static Page_AjustesJardim AjustesJardim;
     static Page_Alarmes Alarmes;
+    static Page_Vazoes Vazoes;
 };

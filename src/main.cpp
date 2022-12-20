@@ -24,6 +24,8 @@ void setup()
   SensorNivelSuperior.begin();
   SensorNivelInferior.begin();
   SensorNivelCritico.begin();
+  SensorFluxoBomba.begin();
+  SensorFluxoPressurizador.begin();
 
   // Setup de saída
   pinMode(PIN_LED_DEBUG, OUTPUT);

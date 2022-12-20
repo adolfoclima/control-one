@@ -69,8 +69,8 @@ public:
 
         if (EstadoAnt != EstadoSeg)
         {
-            Vlr = String(BaseDeTempoSeg); // BaseDeTempoSeg);
-            Msg = Vlr + " L/dia";
+            Vlr = String(VazaoTotalBomba); // BaseDeTempoSeg);
+            Msg = Vlr + " L";
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
             Display::lcd.setCursor(11, 0);

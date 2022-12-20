@@ -11,6 +11,12 @@ private:
         BaseDeTempoSeg = BaseDeTempoSeg / 1000;
     }
 
+        static void TempoBaseMeio()
+    {
+        BaseDeTempoMeioSeg = milles();
+        BaseDeTempoMeioSeg = BaseDeTempoMeioSeg / 500;
+    }
+
     static void TempoUmseg()
     {
         if (BaseDeTempoSeg - previous1Seg >= 1)
@@ -32,6 +38,24 @@ private:
         }
     }
 
+        static void TempoMeioSeg()
+    {
+        if (BaseDeTempoMeioSeg - PreviousMeioSeg >= 1)
+        {
+            PreviousMeioSeg = BaseDeTempoMeioSeg;
+
+            // if the LED is off turn it on and vice-versa:
+            if (EstadoMeioSeg== LOW)
+            {
+                EstadoMeioSeg = HIGH;
+            }
+            else
+            {
+                EstadoMeioSeg = LOW;
+            }
+        }
+    }
+
     static void Relogio()
     {
         if (TempoBackLigth)
@@ -47,7 +71,7 @@ private:
             {
                 MinAtual = 0;
                 HoraAtual++;
-                if (HoraAtual > 59)
+                if (HoraAtual > 23)
                 {
                     HoraAtual = 0;
                     // Ressetar o contador aqui
@@ -117,5 +141,7 @@ public:
         ApagarDisplay();
         TempoBase();
         TempoUmseg();
+        TempoBaseMeio();
+        TempoMeioSeg();
     }
 };

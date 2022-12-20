@@ -59,7 +59,7 @@ public:
                 Msg = "Nivel critico";
                 break;
             case 3:
-                Msg = "Erro 3";
+                Msg = "Falta fluxo";
                 break;
             case 4:
                 Msg = "Erro 4";

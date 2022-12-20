@@ -12,8 +12,8 @@ public:
     static void Print()
     {
         // Monitora nível crítico
-        FLAG = digitalRead(PIN_SENSOR_NIVEL_CRITICO);
-        if (FLAG == HIGH)
+        Flag= digitalRead(PIN_SENSOR_NIVEL_CRITICO);
+        if (Flag == HIGH)
         {
             Alarme = 1;
         }

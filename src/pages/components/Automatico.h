@@ -85,6 +85,24 @@ private:
         }
     }
 
+    static void MonitoraVazao()
+    {
+
+        if (Bomba.getStatus()) // Nível critico esta acionado?
+        {
+            if (TempoBomba > 10)
+            {
+                if (FrequenciaBomba < 2)
+                {
+                    Bomba.off();            // Desliga bomba
+                    Alarme = 3;             // Informa o id do alarme
+                    mudarEstadoDoDisplay(); // Habilita atualizacao do display
+                    pageMenu = Alarmes;     // Chama a página de alarmes
+                }
+            }
+        }
+    }
+
     static void LigarDisplayTemporariamente()
     {
         if (Bomba.getStatus() == !StatusBombaAnterior)
@@ -174,6 +192,7 @@ public:
 
         LigarDisplayTemporariamente();
         ControleDeNivel();
+        MonitoraVazao();
         LerTeclado();
     }
 };

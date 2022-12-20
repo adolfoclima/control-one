@@ -4,14 +4,18 @@
 #include <config.h>
 #include <pages/Pages.h>
 
-
 void Temporizadores()
 {
     // Chamada de Temporizadores
     Pages::Tempos.Print();
 }
 
-/////////////////////LOOP///////////////////////////
+void ContadorDaVazoes()
+{
+    Pages::Vazoes.Registro();
+}
+
+//////////////S=///////LOOP///////////////////////////
 void loop()
 {
     // Botoes();         // Leitura de botoes
@@ -19,6 +23,7 @@ void loop()
     Temporizadores(); // Execução de temporizadores
     // Alarmes();
     // Leitura();
+    ContadorDaVazoes();
 
     switch (pageMenu)
     {
@@ -45,7 +50,7 @@ void loop()
         break;
     case Alarmes:
         Pages::Alarmes.Print(); // Chama tela
-        break;        //AjustesJardim
+        break;                  // AjustesJardim
     default:
         Pages::Home.Print();
         break;

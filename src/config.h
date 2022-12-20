@@ -47,13 +47,17 @@ static bool ledState;
 // Declaração de variáveis 'byte'
 byte tela;
 byte ManterLeitura;
-byte FLAG;
+byte Pulso=0;
+byte Flag=0;
 byte EstadoSeg;
+byte EstadoMeioSeg;
+byte AnteriorMeioSeg;
 byte EstadoAnt;
 byte HabilitaNivelCritico = 0;
 byte StatusBombaAnterior;
 // Declaracao de variaveis 'Int'
 int previous1Seg;
+int PreviousMeioSeg;
 int tempoJardim;
 int tempoJardimAnt;
 int segundosJardim = 10;
@@ -69,6 +73,7 @@ int TempoBackLigth = 1;
 // Declaração de variáveis 'Ultra longa'
 long unsigned int vlr;
 long unsigned int BaseDeTempoSeg;
+long unsigned int BaseDeTempoMeioSeg;
 
 // Declaração de variáveis 'String'
 String Vlr = "";
@@ -79,6 +84,16 @@ String Msg = "";
 String SHoraAtual = "12";
 String SMinAtual = "30";
 String STempoBomba;
+
+// Vazao da bomba
+float BombaCalibracaoFator = 0.2;
+float VazaoTotalBomba = 0.0;
+volatile byte ContadorPulsoBomba = 0;
+volatile byte FrequenciaBomba = 0;
+volatile byte FrequenciaPressurizador = 0;
+
+volatile byte ContadorPulsoPressurizador = 0;  
+unsigned int BombaMililitros = 0;
 
 enum PagesMenu
 {
@@ -125,5 +140,8 @@ Contator Pressurizador(PIN_PRESSURIZADOR_CONTATOR);
 Sensor SensorNivelSuperior(PIN_SENSOR_NIVEL_SUPERIOR);
 Sensor SensorNivelInferior(PIN_SENSOR_NIVEL_INFERIOR);
 Sensor SensorNivelCritico(PIN_SENSOR_NIVEL_CRITICO);
+
+Sensor SensorFluxoBomba(PIN_FLUXO_BOMBA);
+Sensor SensorFluxoPressurizador(PIN_FLUXO_PRESSURIZADOR);
 
 #endif
