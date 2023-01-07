@@ -128,8 +128,8 @@ public:
 
         if (EstadoAnt != EstadoSeg)
         {
-            Vlr = String(BaseDeTempoSeg); // BaseDeTempoSeg);
-            Msg = Vlr + " L/dia";
+            Vlr = String(VazaoTotalPressurizador); // BaseDeTempoSeg);
+            Msg = Vlr + " L";
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
             // Formatação dos horários

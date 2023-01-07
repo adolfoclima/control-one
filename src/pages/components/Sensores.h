@@ -1,13 +1,12 @@
 #pragma once
 #include <config.h>
 
-class Page_Vazoes
+class Page_Sensores
 {
 private:
     static void VazaoBomba()
     {
-        Pulso = digitalRead(PIN_FLUXO_BOMBA);
-        if (Pulso)
+        if (SensorFluxoBomba.getStatus())
         {
             if (PulsoBomba == 0)
             {
@@ -19,23 +18,11 @@ private:
         {
             PulsoBomba = 0;
         }
-        // digitalWrite(PIN_LED_DEBUG, HIGH);
-
-        if (EstadoMeioSeg != AnteriorMeioSeg)
-        {
-            AnteriorMeioSeg = EstadoMeioSeg;
-            MililitrosBomba = MililitrosBomba + ContadorPulsoBomba;
-            FrequenciaBomba = ContadorPulsoBomba;
-            ContadorPulsoBomba = 0;
-            VazaoTotalBomba = MililitrosBomba * CalibracaoFatorBomba;
-            // VazaoTotalBomba = 3;
-        }
     }
 
     static void VazaoPressurizador()
     {
-        Pulso = digitalRead(PIN_FLUXO_PRESSURIZADOR);
-        if (PulsoPressurizador)
+        if (SensorFluxoPressurizador.getStatus())
         {
             if (PulsoPressurizador == 0)
             {
@@ -47,16 +34,24 @@ private:
         {
             PulsoPressurizador = 0;
         }
-        // digitalWrite(PIN_LED_DEBUG, HIGH);
+    }
 
+    static void ComputarVazoes()
+    {
         if (EstadoMeioSeg != AnteriorMeioSeg)
         {
             AnteriorMeioSeg = EstadoMeioSeg;
+            // Vazao e frequencia da boba
+            MililitrosBomba = MililitrosBomba + ContadorPulsoBomba;
+            FrequenciaBomba = ContadorPulsoBomba;
+            ContadorPulsoBomba = 0;
+            VazaoTotalBomba = MililitrosBomba * CalibracaoFatorBomba;
+
+            // Vazao e frequencia do pressurizador
             MililitrosPressurizador = MililitrosPressurizador + ContadorPulsoPressurizador;
             FrequenciaPressurizador = ContadorPulsoPressurizador;
             ContadorPulsoPressurizador = 0;
             VazaoTotalPressurizador = MililitrosPressurizador * CalibracaoFatorPressurizador;
-            // VazaoTotalBomba = 3;
         }
     }
 
@@ -65,5 +60,6 @@ public:
     {
         VazaoBomba();
         VazaoPressurizador();
+        ComputarVazoes();
     }
 };

@@ -5,9 +5,8 @@
 
 class Sensor
 {
-
 private:
-    uint8_t m_pin; // arduino pin number connected to button
+    uint8_t m_pin; // Numero do pino no ESP
 
 public:
     Sensor(uint8_t pin) : m_pin(pin) {}

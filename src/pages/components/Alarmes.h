@@ -34,12 +34,28 @@ private:
         }
     }
 
+    static void IniciaTempoBuzzer()
+    {
+        //ColetaTempoBuzzer = 0;
+        Buzzer.on();
+        //ColetaTempoBuzzer = milles();
+    }
+
+    static void StopBuzzer()
+    {
+
+        if (milles()-2000 > ColetaTempoBuzzer)
+        {
+            Buzzer.off();
+        }
+    }
+
 public:
     static void Print()
     {
         if (obterEstadoDoDisplay())
         {
-            TempoBackLigth = 401;   // 0= Display apagado, 1= Display aceso, 401= Display piscando (ALERTA)
+            TempoBackLigth = 401; // 0= Display apagado, 1= Display aceso, 401= Display piscando (ALERTA)
             // Atualiza display
             Display::lcd.clear();
             Display::lcd.setCursor(0, 1);
@@ -69,8 +85,10 @@ public:
             }
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
+            IniciaTempoBuzzer();
         }
 
         LerTeclado();
+        StopBuzzer();
     }
 };

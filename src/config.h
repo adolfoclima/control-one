@@ -24,12 +24,12 @@ Cn-One - controle avançado de nível
 // Declaração dos pinos do ESP32
 const byte PIN_LED_DEBUG(2);
 
-const int PIN_BOMBA_CONTATOR(12);
-const int PIN_BOMBA_CORRENTE(A4);
-const int PIN_BUZZER(4);
+const byte PIN_BOMBA_CONTATOR(12);
+const byte PIN_BOMBA_CORRENTE(A4);
+const byte PIN_BUZZER(15);
 
-const int PIN_PRESSURIZADOR_CONTATOR(4);
-const int PIN_PRESSURIZADOR_CORRENTE(A5);
+const byte PIN_PRESSURIZADOR_CONTATOR(4);
+const byte PIN_PRESSURIZADOR_PRESSOSTATO(33);
 
 const byte PIN_BTN_FUNCAO_1(34);
 const byte PIN_BTN_FUNCAO_2(35);
@@ -67,6 +67,7 @@ int HoraAtual = 12;
 int MinAtual = 30;
 int SegAtual = 0;
 int TempoBomba = 0;
+int TempoPressurizador = 0;
 int PreviatempoBomba = 0;
 int TempoBackLigth = 1;
 
@@ -86,14 +87,24 @@ String SMinAtual = "30";
 String STempoBomba;
 
 // Vazao da bomba
-float BombaCalibracaoFator = 0.2;
+float CalibracaoFatorBomba = 0.2;
+float CalibracaoFatorPressurizador = 0.2;
+
 float VazaoTotalBomba = 0.0;
+float VazaoTotalPressurizador = 0.0;
+
 volatile byte ContadorPulsoBomba = 0;
+volatile byte ContadorPulsoPressurizador = 0;  
+
 volatile byte FrequenciaBomba = 0;
 volatile byte FrequenciaPressurizador = 0;
 
-volatile byte ContadorPulsoPressurizador = 0;  
-unsigned int BombaMililitros = 0;
+byte PulsoBomba = 0;
+byte PulsoPressurizador = 0;
+
+unsigned int MililitrosBomba = 0;
+unsigned int MililitrosPressurizador = 0;
+unsigned int ColetaTempoBuzzer  = 0;
 
 enum PagesMenu
 {
@@ -135,6 +146,7 @@ Button BtnFuncao4(PIN_BTN_FUNCAO_4, 25, false, false);
 // Declara Contatores
 Contator Bomba(PIN_BOMBA_CONTATOR);
 Contator Pressurizador(PIN_PRESSURIZADOR_CONTATOR);
+Contator Buzzer(PIN_BUZZER);
 
 // Declara sensores
 Sensor SensorNivelSuperior(PIN_SENSOR_NIVEL_SUPERIOR);
@@ -143,5 +155,6 @@ Sensor SensorNivelCritico(PIN_SENSOR_NIVEL_CRITICO);
 
 Sensor SensorFluxoBomba(PIN_FLUXO_BOMBA);
 Sensor SensorFluxoPressurizador(PIN_FLUXO_PRESSURIZADOR);
+Sensor SensorPressaoPulmao(PIN_PRESSURIZADOR_PRESSOSTATO);
 
 #endif

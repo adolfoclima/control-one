@@ -10,20 +10,22 @@ void Temporizadores()
     Pages::Tempos.Print();
 }
 
-void ContadorDaVazoes()
+void ContadoresDeVazoes()
 {
-    Pages::Vazoes.Registro();
+    Pages::Sensores.Registro();
+}
+
+void PressaoDaAgua()
+{
+    Pages::Pressao.Controle();
 }
 
 //////////////S=///////LOOP///////////////////////////
 void loop()
 {
-    // Botoes();         // Leitura de botoes
-    //                   // Execução do comando definido pelo botao
     Temporizadores(); // Execução de temporizadores
-    // Alarmes();
-    // Leitura();
-    ContadorDaVazoes();
+    ContadoresDeVazoes();
+    PressaoDaAgua();
 
     switch (pageMenu)
     {

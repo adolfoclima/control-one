@@ -11,7 +11,7 @@ private:
         BaseDeTempoSeg = BaseDeTempoSeg / 1000;
     }
 
-        static void TempoBaseMeio()
+    static void TempoBaseMeio()
     {
         BaseDeTempoMeioSeg = milles();
         BaseDeTempoMeioSeg = BaseDeTempoMeioSeg / 500;
@@ -38,21 +38,31 @@ private:
         }
     }
 
-        static void TempoMeioSeg()
+    static void TempoMeioSeg()
     {
         if (BaseDeTempoMeioSeg - PreviousMeioSeg >= 1)
         {
             PreviousMeioSeg = BaseDeTempoMeioSeg;
 
             // if the LED is off turn it on and vice-versa:
-            if (EstadoMeioSeg== LOW)
+            if (EstadoMeioSeg == LOW)
             {
                 EstadoMeioSeg = HIGH;
+                ContadoresMeioSegundo();
             }
             else
             {
                 EstadoMeioSeg = LOW;
+                ContadoresMeioSegundo();
             }
+        }
+    }
+
+    static void ContadoresMeioSegundo()
+    {                                  // Acoes a cada meio segundo
+        if (Pressurizador.getStatus()) // Pressurizador esta acionado?
+        {
+            TempoPressurizador++;
         }
     }
 
