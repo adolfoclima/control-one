@@ -1,5 +1,6 @@
 #pragma once
 #include <config.h>
+#include <Bips.h>
 
 class Page_Alarmes
 {
@@ -29,6 +30,7 @@ private:
         {
             TempoBackLigth = 1;
             Alarme = 0;
+            TempoAlarme = 0;
             mudarEstadoDoDisplay();
             pageMenu = Home;
         }
@@ -36,18 +38,7 @@ private:
 
     static void IniciaTempoBuzzer()
     {
-        //ColetaTempoBuzzer = 0;
-        Buzzer.on();
-        //ColetaTempoBuzzer = milles();
-    }
-
-    static void StopBuzzer()
-    {
-
-        if (milles()-2000 > ColetaTempoBuzzer)
-        {
-            Buzzer.off();
-        }
+        //Buzzer.one();
     }
 
 public:
@@ -85,10 +76,9 @@ public:
             }
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
-            IniciaTempoBuzzer();
         }
 
         LerTeclado();
-        StopBuzzer();
+        IniciaTempoBuzzer();
     }
 };

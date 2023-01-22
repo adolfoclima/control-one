@@ -43,7 +43,6 @@ private:
         if (BaseDeTempoMeioSeg - PreviousMeioSeg >= 1)
         {
             PreviousMeioSeg = BaseDeTempoMeioSeg;
-
             // if the LED is off turn it on and vice-versa:
             if (EstadoMeioSeg == LOW)
             {
@@ -58,12 +57,19 @@ private:
         }
     }
 
-    static void ContadoresMeioSegundo()
-    {                                  // Acoes a cada meio segundo
+    static void ContadoresMeioSegundo() // Acoes a cada meio segundo
+    {
         if (Pressurizador.getStatus()) // Pressurizador esta acionado?
         {
             TempoPressurizador++;
         }
+
+        if (Alarme)
+        {
+            TempoAlarme++;
+        }
+
+        
     }
 
     static void Relogio()

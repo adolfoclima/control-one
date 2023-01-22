@@ -10,16 +10,17 @@ Cn-One - controle avançado de nível
 /*--------------------- Includes ---------------------*/
 #include <Arduino.h> // Arduino no VScode
 #include <Wire.h>    // Arduino no ESP
-#include <WiFi.h>      // Conexão WiFi
-#include <time.h>   // Biblioteca de tempo
-
+#include <WiFi.h>    // Conexão WiFi
+#include <time.h>    // Biblioteca de tempo
 
 #include <../lib/Button/Button.h> // https://github.com/JChristensen/JC_Button
 #include <../lib/Contator/Contator.h>
 #include <../lib/Sensor/Sensor.h>
+#include <../lib/Bips/Bips.h>
+#include <../lib/BuzzerPas/BuzzerPas.h>
 #include <utils/Display.h>
-//#include <I_RTC.h>
-//#include <LittlesFS.h>
+// #include <I_RTC.h>
+// #include <LittlesFS.h>
 
 // Declaração dos pinos do ESP32
 const byte PIN_LED_DEBUG(2);
@@ -47,8 +48,8 @@ static bool ledState;
 // Declaração de variáveis 'byte'
 byte tela;
 byte ManterLeitura;
-byte Pulso=0;
-byte Flag=0;
+byte Pulso = 0;
+byte Flag = 0;
 byte EstadoSeg;
 byte EstadoMeioSeg;
 byte AnteriorMeioSeg;
@@ -67,6 +68,7 @@ int HoraAtual = 12;
 int MinAtual = 30;
 int SegAtual = 0;
 int TempoBomba = 0;
+int TempoAlarme = 0;
 int TempoPressurizador = 0;
 int PreviatempoBomba = 0;
 int TempoBackLigth = 1;
@@ -75,6 +77,8 @@ int TempoBackLigth = 1;
 long unsigned int vlr;
 long unsigned int BaseDeTempoSeg;
 long unsigned int BaseDeTempoMeioSeg;
+long unsigned int PreviousBaseDeTempoBuzzer;
+long unsigned int BaseDeTempoBuzzer;
 
 // Declaração de variáveis 'String'
 String Vlr = "";
@@ -94,7 +98,7 @@ float VazaoTotalBomba = 0.0;
 float VazaoTotalPressurizador = 0.0;
 
 volatile byte ContadorPulsoBomba = 0;
-volatile byte ContadorPulsoPressurizador = 0;  
+volatile byte ContadorPulsoPressurizador = 0;
 
 volatile byte FrequenciaBomba = 0;
 volatile byte FrequenciaPressurizador = 0;
@@ -104,7 +108,7 @@ byte PulsoPressurizador = 0;
 
 unsigned int MililitrosBomba = 0;
 unsigned int MililitrosPressurizador = 0;
-unsigned int ColetaTempoBuzzer  = 0;
+unsigned int ColetaTempoBuzzer = 0;
 
 enum PagesMenu
 {
@@ -128,7 +132,6 @@ enum Ajustes
     Minuto
 };
 
-
 bool estadoDoDisplay = true;
 
 PagesMenu pageMenu = Home;
@@ -146,7 +149,7 @@ Button BtnFuncao4(PIN_BTN_FUNCAO_4, 25, false, false);
 // Declara Contatores
 Contator Bomba(PIN_BOMBA_CONTATOR);
 Contator Pressurizador(PIN_PRESSURIZADOR_CONTATOR);
-Contator Buzzer(PIN_BUZZER);
+BuzzerPas Buzzer(PIN_BUZZER);
 
 // Declara sensores
 Sensor SensorNivelSuperior(PIN_SENSOR_NIVEL_SUPERIOR);

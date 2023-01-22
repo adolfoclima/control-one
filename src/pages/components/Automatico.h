@@ -128,8 +128,17 @@ public:
 
         if (EstadoAnt != EstadoSeg)
         {
-            Vlr = String(VazaoTotalPressurizador); // BaseDeTempoSeg);
-            Msg = Vlr + " L";
+            if (Bomba.getStatus())
+            {
+                Vlr = String(FrequenciaBomba); // BaseDeTempoSeg);
+                Msg = Vlr + "L/s   ";
+            }
+            else
+            {
+                Vlr = String(VazaoTotalPressurizador); // BaseDeTempoSeg);
+                Msg = Vlr + " L";
+            }
+
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
             // Formatação dos horários

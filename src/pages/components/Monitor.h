@@ -70,11 +70,11 @@ public:
         if (EstadoAnt != EstadoSeg)
         {
             Vlr = String(VazaoTotalPressurizador); // BaseDeTempoSeg);
-            Msg = Vlr + " L " + String(VazaoTotalBomba);
+            Msg = Vlr + " L";
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
-            //Display::lcd.setCursor(11, 0);
-            //Display::lcd.print(SHoraAtual);
+            Display::lcd.setCursor(11, 0);
+            Display::lcd.print(SHoraAtual);
             if (TempoBackLigth > 10)
             {
                 Display::lcd.noBacklight();

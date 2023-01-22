@@ -3,6 +3,9 @@
 
 #include <config.h>
 #include <pages/Pages.h>
+//#include <Bips.h>
+
+//Bips P(15, 500);
 
 void Temporizadores()
 {
@@ -26,6 +29,7 @@ void loop()
     Temporizadores(); // Execução de temporizadores
     ContadoresDeVazoes();
     PressaoDaAgua();
+    //P.Bipar();
 
     switch (pageMenu)
     {
