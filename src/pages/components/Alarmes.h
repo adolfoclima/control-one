@@ -38,7 +38,27 @@ private:
 
     static void IniciaTempoBuzzer()
     {
-        //Buzzer.one();
+        switch (Alarme)
+        {
+        case 1:
+            EstadoBuzzer = 0;
+            Buzzer.bip_um();
+            break;
+        case 2:
+            EstadoBuzzer = 0;
+            Buzzer.bip_dois();
+            break;
+        case 3:
+            EstadoBuzzer = 0;
+            Buzzer.bip_um();
+            break;
+        case 4:
+            EstadoBuzzer = 0;
+            Buzzer.bip_um();
+            break;
+        default:
+            break;
+        }
     }
 
 public:

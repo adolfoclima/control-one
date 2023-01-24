@@ -105,10 +105,10 @@ volatile byte FrequenciaPressurizador = 0;
 
 byte PulsoBomba = 0;
 byte PulsoPressurizador = 0;
+bool EstadoBuzzer = 0;
 
 unsigned int MililitrosBomba = 0;
 unsigned int MililitrosPressurizador = 0;
-unsigned int ColetaTempoBuzzer = 0;
 
 enum PagesMenu
 {
