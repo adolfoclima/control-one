@@ -1,4 +1,5 @@
 
+// #include <config.h>
 #include "BuzzerPas.h"
 
 void BuzzerPas::begin()
@@ -8,45 +9,75 @@ void BuzzerPas::begin()
 
 void BuzzerPas::bip_um()
 {
-    ContadorBuzzer();
-    if (milles() - ColetaTempoBuzzer > 5000)        // Reinicio do ciclo
+    unsigned long currentMillis = milles();
+    if (currentMillis - previousMillis >= interval)
     {
-        digitalWrite(m_pin, HIGH);
-        ColetaTempoBuzzer = milles();
-    }    
-    else if (milles() - ColetaTempoBuzzer > 200)    // Fim do bip 1
-    {
-        digitalWrite(m_pin, LOW);
-    }
-    else if (milles() - ColetaTempoBuzzer > 0)      // Inicio do bip 1
-    {
-        digitalWrite(m_pin, HIGH);
+        previousMillis = currentMillis;
+        if (count < 1)
+        {
+            if (state == LOW)
+            {
+                state = HIGH;
+            }
+            else
+            {
+                state = LOW;
+                count++;
+            }
+        }
+        else if (count == 1)
+        {
+            count++;
+        }
+        else if (count > 1)
+        {
+            state = LOW;
+            count++;
+        }
+        
+        if (count == 12)
+        {
+            count = 0;
+        }
+
+        digitalWrite(m_pin, state);
     }
 }
 
 void BuzzerPas::bip_dois()
 {
-    ContadorBuzzer();
-    if (milles() - ColetaTempoBuzzer > 5000)        // Reinicio do ciclo
+    unsigned long currentMillis = milles();
+    if (currentMillis - previousMillis >= interval)
     {
-        digitalWrite(m_pin, HIGH);
-        ColetaTempoBuzzer = milles();
-    }    
-    else if (milles() - ColetaTempoBuzzer > 500)    // Fim do bip 2
-    {
-        digitalWrite(m_pin, LOW);
-    }
-    else if (milles() - ColetaTempoBuzzer > 300)      // Inicio do bip 2
-    {
-        digitalWrite(m_pin, HIGH);
-    }
-        else if (milles() - ColetaTempoBuzzer > 200)    // Fim do bip 1
-    {
-        digitalWrite(m_pin, LOW);
-    }
-    else if (milles() - ColetaTempoBuzzer > 0)      // Inicio do bip 1
-    {
-        digitalWrite(m_pin, HIGH);
+        previousMillis = currentMillis;
+        if (count < 2)
+        {
+            if (state == LOW)
+            {
+                state = HIGH;
+            }
+            else
+            {
+                state = LOW;
+                count++;
+            }
+        }
+        else if (count == 2)
+        {
+            count++;
+        }
+        else if (count > 2)
+        {
+            state = LOW;
+            count++;
+        }
+        
+        if (count == 20)
+        {
+            count = 0;
+        }
+
+        digitalWrite(m_pin, state);
     }
 }
 

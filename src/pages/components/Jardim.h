@@ -59,6 +59,7 @@ private:
             if (TempoBackLigth)
             {
                 mudarEstadoDoDisplay(); // Habilita atualizacao do display
+                EstadoBuzzer = 0;
                 pageMenu = Home;        // Chama página Home
             }
             else
@@ -79,7 +80,7 @@ public:
             Display::lcd.print("Jardim");
             Display::lcd.setCursor(9, 1);
             Display::lcd.print("4:Home");
-            tempoJardim = 600;
+            tempoJardim = 6; // 00;
         }
 
         if (EstadoAnt != EstadoSeg)
@@ -92,7 +93,8 @@ public:
             else
             {
                 Msg = "tempo concluido ";
-                TempoBackLigth=401;
+                TempoBackLigth = 401;
+                EstadoBuzzer = 1;
             }
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
@@ -101,5 +103,10 @@ public:
         }
 
         LerTeclado();
+        if (EstadoBuzzer == 1)
+        {
+            //blinkCount = 0; // contador de piscadas
+            Buzzer.bip_dois();
+        }
     }
 };

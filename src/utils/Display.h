@@ -20,9 +20,9 @@ public:
     static void splash()
     {
         lcd.setCursor(0, 0);
-        lcd.print("Brasil...");
+        lcd.print("Deus...");
         lcd.setCursor(0, 1);
-        lcd.print("acima de tudo,");
+        lcd.print("acima de todos,");
         delay(500);
         lcd.clear();
     }
