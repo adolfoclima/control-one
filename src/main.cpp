@@ -31,13 +31,9 @@ void setup()
 
   // Setup de saída
   pinMode(PIN_LED_DEBUG, OUTPUT);
-  // pinMode(PIN_BOMBA_CONTATOR, OUTPUT);
-  // pinMode(PIN_PRESSURIZADOR_CONTATOR, OUTPUT);
-  // pinMode(PIN_BUZZER, OUTPUT);
 
-  // Setup de entrada
-  //pinMode(PIN_BOMBA_CORRENTE, INPUT); // Entrada analogica
-
+Bomba.off();
+Pressurizador.off();
   // Tela de Display
   Pages::Splash.Print();
   // Pages::Home.Print();

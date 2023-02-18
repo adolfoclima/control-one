@@ -50,7 +50,7 @@ private:
             break;
         case 3:
             EstadoBuzzer = 0;
-            Buzzer.bip_um();
+            Buzzer.bip_tres();
             break;
         case 4:
             EstadoBuzzer = 0;
@@ -97,7 +97,6 @@ public:
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);
         }
-
         LerTeclado();
         IniciaTempoBuzzer();
     }

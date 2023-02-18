@@ -17,11 +17,11 @@ bool Contator::getStatus()
 void Contator::on()
 {
     m_state = true;
-    digitalWrite(m_pin, HIGH);
+    digitalWrite(m_pin, LOW);
 }
 
 void Contator::off()
 {
     m_state = false;
-    digitalWrite(m_pin, LOW);
+    digitalWrite(m_pin,HIGH);
 }

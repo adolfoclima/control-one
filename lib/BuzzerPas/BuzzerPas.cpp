@@ -83,5 +83,37 @@ void BuzzerPas::bip_dois()
 
 void BuzzerPas::bip_tres()
 {
-    digitalWrite(m_pin, LOW);
+    unsigned long currentMillis = milles();
+    if (currentMillis - previousMillis >= interval)
+    {
+        previousMillis = currentMillis;
+        if (count < 3)
+        {
+            if (state == LOW)
+            {
+                state = HIGH;
+            }
+            else
+            {
+                state = LOW;
+                count++;
+            }
+        }
+        else if (count == 3)
+        {
+            count++;
+        }
+        else if (count > 3)
+        {
+            state = LOW;
+            count++;
+        }
+        
+        if (count == 20)
+        {
+            count = 0;
+        }
+
+        digitalWrite(m_pin, state);
+    }
 }

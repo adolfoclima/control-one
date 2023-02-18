@@ -80,7 +80,7 @@ public:
             Display::lcd.print("Jardim");
             Display::lcd.setCursor(9, 1);
             Display::lcd.print("4:Home");
-            tempoJardim = 6; // 00;
+            tempoJardim = 600;
         }
 
         if (EstadoAnt != EstadoSeg)
@@ -106,7 +106,7 @@ public:
         if (EstadoBuzzer == 1)
         {
             //blinkCount = 0; // contador de piscadas
-            Buzzer.bip_dois();
+            Buzzer.bip_um();
         }
     }
 };

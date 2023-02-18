@@ -68,6 +68,8 @@ private:
         // Açao botao F2
         if (BtnFuncao2.wasPressed())
         {
+            Alarme = 0;
+            TempoBomba = 0;
             if (TempoBackLigth)
             {
                 mudarEstadoDoDisplay();
@@ -113,7 +115,7 @@ private:
         if (TempoBackLigth > 15)
         {
             mudarEstadoDoDisplay();
-            pageMenu=Monitor;
+            pageMenu = Monitor;
         }
     }
 
