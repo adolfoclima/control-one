@@ -62,14 +62,17 @@ private:
         if (Pressurizador.getStatus()) // Pressurizador esta acionado?
         {
             TempoPressurizador++;
+            TempoPausaPressao = 0;
+        }
+        else
+        {
+            TempoPausaPressao++;
         }
 
         if (Alarme)
         {
             TempoAlarme++;
         }
-
-        
     }
 
     static void Relogio()

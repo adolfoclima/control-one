@@ -12,6 +12,7 @@
 #include <pages/components/Ajustes.h>
 #include <pages/components/AjustesHora.h>
 #include <pages/components/AjustesJardim.h>
+#include <pages/components/AjustesVazao.h>
 #include <pages/components/Alarmes.h>
 #include <pages/components/Sensores.h>
 #include <pages/components/Pressao.h>
@@ -31,6 +32,7 @@ public:
     static Page_Ajustes Ajustes;
     static Page_AjustesHora AjustesHora;
     static Page_AjustesJardim AjustesJardim;
+    static Page_AjustesVazao AjustesVazao;
     static Page_Alarmes Alarmes;
     static Page_Sensores Sensores;
     static Page_Pressao Pressao;

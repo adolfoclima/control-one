@@ -1,7 +1,7 @@
 #pragma once
 #include <config.h>
 
-class Page_AjustesJardim
+class Page_AjustesVazao
 {
 private:
     static bool obterEstadoDoDisplay()
@@ -26,19 +26,19 @@ private:
     }
     static void Acao2()
     {
-        TempoTotalJardim = TempoTotalJardim - 60;
-        if (TempoTotalJardim < 60)
+        FrequenciaMinimaPressao--;
+        if (FrequenciaMinimaPressao < 0)
         {
-            TempoTotalJardim = 1200;
+            FrequenciaMinimaPressao = 20;
         }
         mudarEstadoDoDisplay();
     }
     static void Acao3()
     {
-        TempoTotalJardim = TempoTotalJardim + 60;
-        if (TempoTotalJardim > 1200)
+        FrequenciaMinimaPressao++;
+        if (FrequenciaMinimaPressao > 20)
         {
-            TempoTotalJardim = 60;
+            FrequenciaMinimaPressao = 0;
         }
         mudarEstadoDoDisplay();
     }
@@ -84,7 +84,7 @@ public:
         if (obterEstadoDoDisplay())
         {
             // Atualiza display
-            Msg = "Tmp jardim " + String(TempoTotalJardim);
+            Msg = "Vzao Min   " + String(FrequenciaMinimaPressao);
             Display::lcd.clear();
             Display::lcd.setCursor(0, 0);
             Display::lcd.print(Msg);

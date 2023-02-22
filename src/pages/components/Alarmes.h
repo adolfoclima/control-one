@@ -28,11 +28,13 @@ private:
         // Açao botao F4
         if (BtnFuncao4.wasPressed())
         {
+            BloqueioDoPressurizador = 0; // Libera o pressurizador para voltar a funcionar
             TempoBackLigth = 1;
             Alarme = 0;
             TempoAlarme = 0;
             mudarEstadoDoDisplay();
             pageMenu = Home;
+            Buzzer.bip_zero();
         }
     }
 
@@ -54,7 +56,7 @@ private:
             break;
         case 4:
             EstadoBuzzer = 0;
-            Buzzer.bip_um();
+            Buzzer.bip_tres();
             break;
         default:
             break;
@@ -89,7 +91,7 @@ public:
                 Msg = "Falta fluxo";
                 break;
             case 4:
-                Msg = "Erro 4";
+                Msg = "Falta pressao";
                 break;
             default:
                 break;

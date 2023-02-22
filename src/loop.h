@@ -54,6 +54,9 @@ void loop()
     case AjustesJardim:
         Pages::AjustesJardim.Print(); // Chama tela
         break;
+    case AjustesVazao:
+        Pages::AjustesVazao.Print(); // Chama tela
+        break;   
     case Alarmes:
         Pages::Alarmes.Print(); // Chama tela
         break;                  // AjustesJardim

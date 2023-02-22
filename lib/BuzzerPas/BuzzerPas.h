@@ -23,6 +23,7 @@ public:
 
     void begin();
     // bool getStatus();
+    void bip_zero();
     void bip_um();
     void bip_dois();
     void bip_tres();

@@ -80,7 +80,7 @@ public:
             Display::lcd.print("Jardim");
             Display::lcd.setCursor(9, 1);
             Display::lcd.print("4:Home");
-            tempoJardim = 600;
+            tempoJardim = TempoTotalJardim;
         }
 
         if (EstadoAnt != EstadoSeg)

@@ -49,11 +49,11 @@ private:
         {
         case 0:
             mudarEstadoDoDisplay();
-            pageMenu = Home;
+            pageMenu = AjustesJardim;
             break;
         case 1:
             mudarEstadoDoDisplay();
-            pageMenu = Home;
+            pageMenu = AjustesVazao;
             break;
         case 2:
             mudarEstadoDoDisplay();

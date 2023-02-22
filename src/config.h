@@ -56,11 +56,13 @@ byte AnteriorMeioSeg;
 byte EstadoAnt;
 byte HabilitaNivelCritico = 0;
 byte StatusBombaAnterior;
+byte BloqueioDoPressurizador = 0;
 // Declaracao de variaveis 'Int'
 int previous1Seg;
 int PreviousMeioSeg;
 int tempoJardim;
 int tempoJardimAnt;
+int TempoTotalJardim = 600;
 int segundosJardim = 10;
 int Alarme = 0;
 int TipoAjuste = 0;
@@ -72,6 +74,8 @@ int TempoAlarme = 0;
 int TempoPressurizador = 0;
 int PreviatempoBomba = 0;
 int TempoBackLigth = 1;
+int TempoPausaPressao = 0;
+int FrequenciaMinimaPressao = 4;
 
 // Declaração de variáveis 'Ultra longa'
 long unsigned int vlr;
@@ -121,6 +125,7 @@ enum PagesMenu
     AjustesHora,
     AjustesMinuto,
     AjustesJardim,
+    AjustesVazao,
     Alarmes
 };
 

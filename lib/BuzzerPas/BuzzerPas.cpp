@@ -34,7 +34,7 @@ void BuzzerPas::bip_um()
             state = LOW;
             count++;
         }
-        
+
         if (count == 12)
         {
             count = 0;
@@ -71,7 +71,7 @@ void BuzzerPas::bip_dois()
             state = LOW;
             count++;
         }
-        
+
         if (count == 20)
         {
             count = 0;
@@ -108,7 +108,7 @@ void BuzzerPas::bip_tres()
             state = LOW;
             count++;
         }
-        
+
         if (count == 20)
         {
             count = 0;
@@ -116,4 +116,10 @@ void BuzzerPas::bip_tres()
 
         digitalWrite(m_pin, state);
     }
+}
+
+void BuzzerPas::bip_zero()
+{
+    state == LOW;
+    digitalWrite(m_pin, state);
 }
